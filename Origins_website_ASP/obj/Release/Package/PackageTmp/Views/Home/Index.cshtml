@@ -1,0 +1,60 @@
+﻿@model Origins_website_ASP.ViewModels.ActusViewModel
+@{
+    /**/
+
+    ViewBag.Title = "Origin's Krew - Association de danse/tricks/arts martiaux";
+    ViewBag.Content = "Site officiel de la compagnie de danse hip-hop/breakdance Origin's. Toutes le informations nécessaire pour nous " +
+                "contacter et sur nos prestations.";
+    Layout = "~/Views/Shared/_LayoutCommun.cshtml";
+}
+
+@section insertions
+{
+    <link rel="stylesheet" href="~/Content/css/index.css" />
+    <script src='~/Content/javascript/diapo.js'></script>
+}
+
+@if (ViewBag.Langue == "fr")
+{
+    @Html.Partial("fr")
+    @section footer
+    {
+        <div id="cont_footer">
+            <div class="flex_titre"> SUIVEZ NOUS SUR LES <br /> RESEAUX SOCIAUX </div>
+            <div class="flex_reseaux">
+                <a href="https://www.facebook.com/OriginsKrew" target="_blank"> Facebook </a> <br />
+                <a href="https://www.instagram.com/origins.krew/?hl=fr" target="_blank"> Instagram </a> <br />
+                <a href="https://vimeo.com/user37918943" target="_blank"> Viméo </a>
+            </div>
+            <div class="flex_contact">
+                Nous contacter <br />
+                <address><a href="mailto:Origins63@outlook.fr" target="_blank">contact@originskrew.com</a></address>
+            </div>
+        </div>
+    }
+}
+else
+{
+    @Html.Partial("en")
+    @section footer
+    {
+        <div id="cont_footer">
+            <div class="flex_titre"> FOLLOW US ON <br /> SOCIAL NETWORKS </div>
+            <div class="flex_reseaux">
+                <a href="https://www.facebook.com/OriginsKrew" target="_blank"> Facebook </a> <br />
+                <a href="https://www.instagram.com/origins.krew/?hl=fr" target="_blank"> Instagram </a> <br />
+                <a href="https://vimeo.com/user37918943" target="_blank"> Viméo </a>
+            </div>
+            <div class="flex_contact">
+                Contact us <br />
+                <address><a href="mailto:Origins63@outlook.fr" target="_blank">contact@originskrew.com</a></address>
+            </div>
+        </div>
+    }
+}
+
+@section ajout
+{
+    <script src='~/Content/javascript/choixactu.js'></script>
+}
+

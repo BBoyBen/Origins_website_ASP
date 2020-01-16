@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Origin's Krew - Formation";
+    ViewBag.Content = "Pour en savoir plus sur les formations en breakdance de la compagnie Origin's venez ici."; 
+    Layout = "~/Views/Shared/_LayoutCommun.cshtml";
+}
+
+@section insertions
+{
+    <link rel="stylesheet" href="~/Content/css/prestations.css" />    
+}
+
+@if (ViewBag.Langue == "fr")
+{
+    @Html.Partial("formation_fr")
+}
+else
+{
+    @Html.Partial("formation_en")
+}
+

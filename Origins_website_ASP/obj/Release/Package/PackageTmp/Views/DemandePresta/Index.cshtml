@@ -1,0 +1,194 @@
+﻿@model Origins_website_ASP.ViewModels.PrestationViewModel
+@{
+    ViewBag.Title = "Origin's Krew - Demande de prestations";
+    ViewBag.Content = "Vous avez besoin de nos services utilisez notre outil de demande de prestaions";
+    Layout = "~/Views/Shared/_LayoutCommun.cshtml";
+}
+
+@section insertions
+{
+    <link rel="stylesheet" href="~/Content/css/demandepresta.css" />
+}
+
+<div id="corpsdepage">
+    <div class="partiecorps">
+        <h1> Demande de prestations </h1>
+        @using (Html.BeginForm("Index", "DemandePresta", FormMethod.Post, new { id = "demandepresta" }))
+        {
+            <fieldset id="identite">
+                <div id="nomprenom">
+                    <div class="elemnp">
+                        @Html.LabelFor(model => model.Identite.Nom)
+                        @Html.TextBoxFor(model => model.Identite.Nom)
+                        <span id="nomIncorrect"></span>
+                    </div>
+                    <div class="elemnp">
+                        @Html.LabelFor(model => model.Identite.Prenom)
+                        @Html.TextBoxFor(model => model.Identite.Prenom)
+                        <span id="prenomIncorrect"></span>
+                    </div>
+                </div>
+                <div id="mailtel">
+                    <div class="elemmt">
+                        @Html.LabelFor(model => model.Identite.Email)
+                        @Html.TextBoxFor(model => model.Identite.Email)
+                        <span id="emailIncorrect"></span>
+                    </div>
+                    <div class="elemmt">
+                        @Html.LabelFor(model => model.Identite.Telephone)
+                        @Html.TextBoxFor(model => model.Identite.Telephone)
+                        <span id="telephoneIncorrect"></span>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset id="structure">
+                <div id="struc">
+                    <div class="elemstruc">
+                        @Html.LabelFor(model => model.Structure.Type)
+                        @{
+                            IEnumerable<SelectListItem> ListeTypeStruc = new List<SelectListItem> {
+                                new SelectListItem { Text = "Association", Value = "Association", Selected = true},
+                                new SelectListItem { Text = "Entreprise", Value = "Entreprise"},
+                                new SelectListItem { Text = "Particulier", Value = "Particulier"},
+                                new SelectListItem { Text = "Autre", Value = "Autre"}
+                            };
+                        }
+                        @Html.DropDownListFor(model => model.Structure.Type, ListeTypeStruc)
+                    </div>
+                    <div class="elemstruc">
+                        @Html.LabelFor(model => model.Structure.NomStructure)
+                        @Html.TextBoxFor(model => model.Structure.NomStructure)
+                    </div>
+                </div>
+
+                @Html.LabelFor(model => model.Structure.Pays)
+                @{
+                    IEnumerable<SelectListItem> ListePays = new List<SelectListItem> {
+                        new SelectListItem {Text = "France", Value = "France", Selected = true},
+                        new SelectListItem {Text = "Allemagne", Value = "Allemagne"},
+                        new SelectListItem {Text = "Espagne", Value = "Espagne"},
+                        new SelectListItem {Text = "Grande-Bretagne", Value = "GrandeBretagne"},
+                        new SelectListItem {Text = "Italie", Value = "Italie"},
+                        new SelectListItem {Text = "Suisse", Value = "Suisse"},
+                        new SelectListItem {Text = "Hollande", Value = "Hollande"},
+                        new SelectListItem {Text = "Belgique", Value = "Belgique"},
+                        new SelectListItem {Text = "Etats-Unis", Value = "EtatsUnis"},
+                        new SelectListItem {Text = "Autre", Value = "Autre"}
+                    };
+                }
+                @Html.DropDownListFor(model => model.Structure.Pays, ListePays)
+
+                <div id="paysfrance" style="display: block;">
+                    @Html.LabelFor(model => model.Structure.CodePostal)
+                    @Html.TextBoxFor(model => model.Structure.CodePostal)
+                    <span id="cpIncorrect"></span>
+                </div>
+                <div id="payseu" style="display: none;">
+                    <div class="elemeu">
+                        @Html.LabelFor(model => model.Structure.Etat)
+                        @Html.TextBoxFor(model => model.Structure.Etat)
+                    </div>
+                    <div class="elemeu">
+                        @Html.LabelFor(model => model.Structure.VilleEU)
+                        @Html.TextBoxFor(model => model.Structure.VilleEU)
+                    </div>
+                </div>
+                <div id="paysautre" style="display: none;">
+                    @Html.LabelFor(model => model.Structure.VilleAutre)
+                    @Html.TextBoxFor(model => model.Structure.VilleAutre)
+                </div>
+            </fieldset>
+
+            <fieldset id="choixprestation">
+                <div id="bouttonchoixrep">
+                    <div class="elemrep">
+                        @Html.RadioButtonFor(model => model.Choix.ChoixPrestation, "representation", new { id = "representation", @checked = "checked" })
+                        @Html.Label("representation", "Représentation")
+                    </div>
+                    <div class="elemrep">
+                        @Html.RadioButtonFor(model => model.Choix.ChoixPrestation, "stage", new { id = "stage" })
+                        @Html.Label("stage", "Stage")
+                    </div>
+                    <div class="elemrep">
+                        @Html.RadioButtonFor(model => model.Choix.ChoixPrestation, "cours", new { id = "cours" })
+                        @Html.Label("cours", "Cours")
+                    </div>
+                </div>
+
+                <div id="choixrepresentation" style="display: flex;">
+                    <div class="blocrep">
+                        @Html.LabelFor(model => model.Choix.TempsPresta)
+                        @Html.TextBoxFor(model => model.Choix.TempsPresta, new { type = "number", min = "5", max = "90", step = "1" })
+                    </div>
+                    <div class="blocrep">
+                        @Html.LabelFor(model => model.Choix.Occurence)
+                        @Html.TextBoxFor(model => model.Choix.Occurence, new { type = "number", min = "1", max = "10", step = "1" })
+                    </div>
+                    <div class="blocrep">
+                        Initiation au hip-hop:
+                        @Html.RadioButtonFor(model => model.Choix.Initiation, "oui", new { id = "oui", @checked = "checked" })
+                        @Html.Label("oui", "Oui")
+                        @Html.RadioButtonFor(model => model.Choix.Initiation, "non", new { id = "non" })
+                        @Html.Label("non", "Non")
+                    </div>
+                    <div id="budget" class="blocrep">
+                        @Html.LabelFor(model => model.Choix.Budget)
+                        @Html.TextBoxFor(model => model.Choix.Budget, new { type = "number", step = "1", min = "0" })
+                        @Html.Label("Prestation_Budget", "€")
+                    </div>
+                </div>
+
+                <div id="choixstage" style="display: none;">
+                    <div class="blocstage">
+                        @Html.LabelFor(model => model.Choix.Date)
+                        @Html.TextBoxFor(model => model.Choix.Date, new { type = "date" })
+                    </div>
+                    <div class="blocstage">
+                        @Html.LabelFor(model => model.Choix.DureeStage)
+                        @{
+                            IEnumerable<SelectListItem> ListeDureeStage = new List<SelectListItem> {
+                                new SelectListItem{Text = "Demi journée", Value = "demijournee", Selected = true},
+                                new SelectListItem{Text = "1 journée", Value = "unejournee"},
+                                new SelectListItem{Text = "2 jours", Value = "deuxjour"},
+                                new SelectListItem{Text = "Autre", Value = "autre"}
+                            };
+                        }
+                        @Html.DropDownListFor(model => model.Choix.DureeStage, ListeDureeStage)
+                    </div>
+                    <div class="blocstage">
+                        @Html.LabelFor(model => model.Choix.Niveau)
+                        @{
+                            IEnumerable<SelectListItem> ListeNiveau = new List<SelectListItem> {
+                                new SelectListItem{Text = "Débutant", Value = "Debutant", Selected = true},
+                                new SelectListItem{Text = "Initié", Value = "Initie"},
+                                new SelectListItem{Text = "Confirmé", Value = "Confirme"},
+                                new SelectListItem{Text = "Autre", Value = "Autre"}
+                            };
+                        }
+                        @Html.DropDownListFor(model => model.Choix.Niveau, ListeNiveau)
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset id="info">
+                @Html.LabelFor(model => model.Choix.InfoComplementaire, new { @class = "eleminfo" })
+                @Html.TextAreaFor(model => model.Choix.InfoComplementaire, 10, 50, new { @class = "eleminfo", value = "NaN" })
+            </fieldset>
+
+            <fieldset>
+                <div class="row" id="cgu">
+                    <label for="valideCgu" class="col-10"> En validant je reconnaîs avoir pris connaissance et accepté les <a href="~/Content/CGU/condition_utilisation_mentions_legales.pdf"> Conditions d'utilisation et mentions légales</a></label>
+                    <input type="checkbox" name="valideCgu" id="valideCgu" />
+                </div>
+            </fieldset>
+
+            <input type="submit" value="Valider" id="valider" />
+        }
+    </div>
+</div>
+
+@section ajout
+{
+    <script src='~/Content/javascript/demandepresta.js'></script>
+}
+

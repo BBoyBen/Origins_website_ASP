@@ -1,0 +1,51 @@
+﻿@model List<Origins_website_ASP.Models.DemandePrestation.Prestation>
+@{
+    ViewBag.Title = "ListeDemande";
+    ViewBag.Content = "";
+    Layout = "~/Views/Shared/_LayoutCommun.cshtml";
+}
+
+@section insertions 
+{
+    <link rel="stylesheet" href="~/Content/css/listeDemande.css" />
+}
+
+<div id="corpsdepage">
+    <div class="partiecorps">
+        <h1 id="titreliste"> Liste des demandes de prestation </h1>
+        @if (Model.Count == 0)
+        {
+            <span> Pas de prestation à afficher </span>
+        }
+        else
+        {
+            <table id="tabdemande">
+                <tr id="firstlign">
+                    <td class="droite titretab"> Nom </td>
+                    <td class="droite titretab"> Prénom </td>
+                    <td class="droite titretab"> Type de structure </td>
+                    <td class="droite titretab"> Nom de structure </td>
+                    <td class="droite titretab"> Type de prestation </td>
+                    <td></td>
+                </tr>
+                @foreach (Origins_website_ASP.Models.DemandePrestation.Prestation presta in Model)
+                {
+                    <tr>
+                        <td class="droite">@presta.Nom</td>
+                        <td class="droite">@presta.Prenom</td>
+                        <td class="droite">@presta.Type</td>
+                        <td class="droite">
+                            @if (presta.Type != "Particulier")
+                            {
+                                @presta.NomStructure
+                            }
+                        </td>
+                        <td class="droite">@presta.ChoixPrestation</td>
+                        <td>@Html.ActionLink("Voir en détail", "RecapDemande", "DemandePresta", new { id = presta.Id }, null)</td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</div>
+

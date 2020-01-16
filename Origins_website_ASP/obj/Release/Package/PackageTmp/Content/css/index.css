@@ -1,0 +1,177 @@
+#menuHome 
+{
+    color: white;
+    border-bottom: 3px solid red;
+}
+
+#cont_acceuil
+{
+	display: flex;
+	flex-direction: column;
+	background-color: black;
+}
+
+
+.flex_photo
+{
+	text-align: center;
+	padding-bottom: 10px;
+	background-color: black;
+	height: auto;
+	width: 100%;
+}
+
+#cont_footer
+{
+	display: flex;
+	justify-content: space-around;
+	font-family: timeburner;
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+.flex_titre
+{
+	width: 33%;
+	font-weight: bold;
+	font-size: 30px;
+	padding-left: 10px;
+
+}
+
+.flex_reseaux
+{
+	width: 34%;
+	text-align: center;
+	font-size: 20px;
+}
+
+.flex_contact
+{
+	width: 33%;
+	text-align: center;
+	font-size: 20px;
+}
+
+.dateactu
+{
+	color: grey;
+	float: right;
+	padding-top: 4px;
+}
+
+.supp {
+    float: left;
+}
+
+.imagesupp {
+    width: 30px;
+    height: auto;
+}
+
+#actu
+{
+	border-bottom: 2px solid black;
+}
+
+.actualite
+{
+	padding-top: 20px;
+	padding-bottom: 50px;
+}
+
+.imgActus
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	max-width: 60%;
+	height: auto;
+}
+
+#formchoixactus 
+{
+	display: flex;
+	padding-bottom: 20px;
+}
+
+.affichactus
+{
+	margin-left: 30px;
+}
+
+input, select
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	box-shadow: 3px 3px 2px black;
+}
+
+.diapo {
+    width: 100%;
+    height: auto;
+}
+
+.photoDiapo {
+    width: 50%;
+    height: auto;
+}
+
+
+
+/* Propriété pour les mobile */
+
+@media all and (max-device-width: 480px)
+{
+	#cont_footer
+	{
+		flex-direction: column;
+	}
+
+	.flex_titre, .flex_reseaux, .flex_contact
+	{
+		width: 100%;
+		margin-bottom: 10px;
+	}
+
+	.flex_titre
+	{
+		font-size: 40px;
+	}
+
+    .flex_photo {
+        width: 100%;
+        height: auto;
+    }
+
+    .diapo {
+        width: 100%;
+        margin: 0 0 0 0;
+    }
+
+    .photoDiapo {
+        width: 50%;
+        height: auto;
+    }
+
+    .flex_reseaux, .flex_contact {
+        font-size: 20px;
+    }
+
+	label, input, select
+	{
+		font-size: 15px;
+	}
+    .actualite {
+        font-size: 15px;
+    }
+
+    .dateactu {
+        font-size: 12px;
+    }
+
+    .titreActu {
+        font-size: 20px;
+    }
+    
+}

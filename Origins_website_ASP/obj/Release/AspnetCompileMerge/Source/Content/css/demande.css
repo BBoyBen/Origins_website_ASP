@@ -1,0 +1,33 @@
+#recapid
+{
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+#recapstruc
+{
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 30px;
+}
+
+#recappresta
+{
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 30px;
+	justify-content: center;
+}
+
+.elempresta
+{
+	justify-content: left;
+}
+
+#recapinfo
+{
+	margin-bottom: 30px;
+}

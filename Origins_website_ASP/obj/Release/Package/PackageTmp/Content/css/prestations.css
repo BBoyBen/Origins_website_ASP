@@ -1,0 +1,66 @@
+#menuPresta {
+    color: white;
+    border-bottom: 3px solid red;
+}
+
+.courstable
+{
+	text-align: center;
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.courstable td
+{
+	border: 2px solid black;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	vertical-align: middle;
+}
+
+.soustab
+{
+	width: 100%;
+}
+
+tr>.cell
+{
+	border-right: 0px solid lightgrey;
+	border-left: 0px solid lightgrey;
+}
+
+tr>.celltop
+{
+	border-top: 0px solid lightgrey;
+}
+
+tr>.cellbott
+{
+	border-bottom: 0px solid lightgrey;
+}
+
+
+.lieux
+{
+	color: black;
+}
+
+.projetform
+{
+	font-size: 25px;
+	width: 15%;
+	color: black;
+}
+
+td>a:hover
+{
+	color: black;
+}
+
+.image  {
+    max-width: 80%;
+    text-align: center;
+}
+

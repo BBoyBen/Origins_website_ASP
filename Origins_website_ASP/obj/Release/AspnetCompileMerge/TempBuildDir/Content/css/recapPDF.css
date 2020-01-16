@@ -1,0 +1,77 @@
+﻿@font-face {
+    font-family: 'quantum';
+    src: url('police/quantum.otf');
+}
+
+body {
+    color: black;
+    background-color: white;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: quantum;
+    font-size: 35px;
+    font-weight: bold;
+    padding-bottom: 25px;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 30px;
+    font-family: quantum;
+    font-size: 25px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+#dateCrea {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#recapid, #recapstruc, #recappresta {
+    margin-left: 40%;
+}
+
+#recapinfo {
+    text-align: center;
+}
+
+#recapid {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#recapstruc {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+#recappresta {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+.elempresta {
+    justify-content: left;
+}
+
+#recapinfo {
+    margin-bottom: 30px;
+}
+
+#logoOrigin {
+    text-align: center;
+    font-family: ebbing;
+    font-size: 100px;
+    margin-bottom: 30px;
+}

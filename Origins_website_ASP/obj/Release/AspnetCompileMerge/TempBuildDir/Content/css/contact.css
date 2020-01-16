@@ -1,0 +1,95 @@
+#menuContact {
+    color: white;
+    border-bottom: 3px solid red;
+}
+
+.logocontact {
+    width: 15%;
+    height: auto;
+    float: left;
+    padding-left: 5%;
+    padding-right: 2%;
+}
+
+.partiecontact
+{
+	text-align: left;
+}
+
+.donneecontact
+{
+	padding-left: 10%;
+	margin-bottom: 5%;
+}
+
+.donneecontact a
+{
+	color: black;
+}
+
+.donneecontact a:hover
+{
+	color: grey;
+}
+
+.titrecontact
+{
+	padding-bottom: 5%;
+	padding-top: 2%;
+}
+
+#email
+{
+	padding-top: 1%;
+}
+
+#partiereseaux
+{
+	display: flex;
+	flex-direction: column;
+}
+
+.reseaux
+{
+	margin-top: 5%;
+}
+
+.logoreseaux
+{
+	width: 25%;
+	height: auto;
+	float: left;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.titrereseaux
+{
+	padding-top: 5%;
+}
+
+.reseaux>a
+{
+	color: black;
+}
+
+.reseaux>a:hover
+{
+	color: grey;
+}
+
+#demandepresta
+{
+	padding-top: 70px;
+}
+
+/* Propriété pour les mobiles */
+
+@media all and (max-device-width: 480px) 
+{
+    .logocontact
+    {
+        padding-top: 3%;
+    }
+
+}

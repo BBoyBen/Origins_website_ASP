@@ -1,0 +1,40 @@
+﻿@model Origins_website_ASP.ViewModels.AdminViewModel
+@{
+    ViewBag.Title = "Connection admin";
+    ViewBag.Content = "";
+    Layout = "~/Views/Shared/_LayoutCommun.cshtml";
+}
+
+@section insertions
+{
+    <link rel="stylesheet" href="~/Content/css/createActu.css" />
+}
+
+<div id="corpsdepage">
+    <div class="partiecorps">
+
+        @if (Model.Authentifie)
+        {
+            <h2> Vous êtes déjà identifié </h2>
+            <span>Bienvenue @Model.Administrateur.Prenom ! Que voulez-vous faire ?</span>
+            <span>@Html.ActionLink("Se déconnecter ?", "Deconnexion")</span> <br/>
+            <span> ou @Html.ActionLink("Aller à la page de gestion", "Index", "Gestion")</span>
+        }
+        else
+        {
+            using (Html.BeginForm("Index", "Login", FormMethod.Post, new { id = "connexion" }))
+            {
+                @Html.LabelFor(model => model.Administrateur.Identifiant, new { @class = "elemco labellog" })
+                @Html.TextBoxFor(model => model.Administrateur.Identifiant, new { id = "login", @class = "elemco inputlog" })
+                @Html.ValidationMessageFor(model => model.Administrateur.Identifiant)
+
+                @Html.LabelFor(model => model.Administrateur.MotDePasse, new { @class = "elemco labellog" })
+                @Html.PasswordFor(model => model.Administrateur.MotDePasse, new { id = "passwd", @class = "elemco inputlog" })
+                @Html.ValidationMessageFor(model => model.Administrateur.MotDePasse)
+
+                <input type="submit" name="seco" id="seco" value="Se connecter" class="elemco inputlog" />
+            }
+        }
+    </div>
+</div>
+

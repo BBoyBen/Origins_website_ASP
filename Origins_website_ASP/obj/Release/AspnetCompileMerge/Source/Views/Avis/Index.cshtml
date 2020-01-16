@@ -1,0 +1,29 @@
+﻿@model List<Origins_website_ASP.Models.Avis>
+@{
+    ViewBag.Title = "Origin's Krew - Avis";
+    ViewBag.Content = "Pour savoir ce que les gens pensent de nous ou nous donner votre avis sur nos prestations.";
+    Layout = "~/Views/Shared/_LayoutCommun.cshtml";
+}
+
+@section insertions
+{
+    <link rel="stylesheet" href="~/Content/css/avis.css" />
+    <script src="~/Content/javascript/note.js"></script>
+}
+
+<div id="corpsdepage">
+    <div class="partiecorps">
+        @if (ViewBag.Langue == "fr")
+        {
+            @Html.Partial("fr")
+        }
+        else
+        {
+            @Html.Partial("en")
+        }
+
+        @Html.Partial("CreationAvis")
+
+    </div>
+</div>
+

@@ -1,0 +1,83 @@
+﻿@model Origins_website_ASP.Models.DemandePrestation.Prestation
+@{
+    Layout = null;
+}
+
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/css/recapPDF.css" />
+    <title>Recapitulatif demande </title>
+</head>
+    <body>
+        <div>
+            <div id="logoOrigin">
+                <img src="~/Content/image/origins_logo.jpg" id="imgLogoOrigins" alt="logo origins" />
+            </div>
+            <div id="dateCrea"> @Model.DateCreation </div>
+            <h1> Recapatilutif demande de prestation</h1>
+
+            <div id="recapid">
+                <div class="elemid">
+                    @Model.Nom  @Model.Prenom
+                </div>
+                <div class="elemid">
+                    Mail : @Model.Email
+                </div>
+                <div class="elemid">
+                    Téléphone : @Model.Telephone
+                </div>
+            </div>
+            <div id="recapstruc">
+                <div class="elemrecapstruc">
+                    @Model.Type,
+                    @if (Model.Type != "particulier")
+                    {
+                        @Model.NomStructure
+                    }
+                </div>
+                <div class="elemrecapstruc">
+                    @Model.Pays,
+                    @if (Model.Pays == "France")
+                    {
+                        @Model.CodePostal
+                    }
+                    else if (Model.Pays == "EtatsUnis")
+                    {
+                        @Model.VilleEU @Model.Etat
+                    }
+                    else
+                    {
+                        @Model.VilleAutre
+                    }
+                </div>
+            </div>
+
+            <h2> Prestation demandée </h2>
+            <div id="recappresta">
+                @if (Model.ChoixPrestation == "representation")
+                {
+                    <span class='elempresta'>@Model.Occurence @Model.ChoixPrestation de @Model.TempsPresta minutes.</span><br />
+                    <span class='elempresta'>Initiation hip-hop voulue: @Model.Initiation</span><br />
+                    <span class='elempresta'>Budget: @Model.Budget €.</span>
+                }
+                else if (Model.ChoixPrestation == "stage")
+                {
+                    <span class='elempresta'>@Model.ChoixPrestation de @Model.DureeStage</span><br />
+                    <span class='elempresta'>Date de début: @Model.Date.ToShortDateString()</span><br />
+                    <span class='elempresta'>Niveau: @Model.Niveau</span>
+                }
+                else
+                {
+                    <span class='elempresta'>Informations pour des cours de breakdance.</span>
+                }
+            </div>
+            <h2> Informations complémentaire </h2>
+            <div id="recapinfo">
+                @Model.InfoComplementaire
+            </div>
+        </div>
+    </body>
+</html>

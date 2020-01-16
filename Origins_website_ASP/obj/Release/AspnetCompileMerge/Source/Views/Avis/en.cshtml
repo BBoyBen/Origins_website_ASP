@@ -1,0 +1,46 @@
+﻿@model List<Origins_website_ASP.Models.Avis>
+<h1> Opinion </h1>
+
+@for (int i = Model.Count() - 1; i >= 0; i--)
+{
+    Origins_website_ASP.Models.Avis avis = Model.ElementAt(i);
+    <div class="elemavis" id=@avis.Id>
+        <div class="colavis">
+            <div class="nomavis"> @avis.Nom </div>
+            <div class="nomavis">
+                @for (int j = 0; j < 5; j++)
+                {
+                    if (j < avis.Note)
+                    {
+                        <img src='/Content/image/star1.png' alt='etoile pleine' class='etoileavis' />
+                    }
+                    else
+                    {
+                        <img src='/Content/image/star0.png' alt='etoile vide' class='etoileavis' />
+                    }
+                }
+            </div>
+            <div class="dateavis"> @avis.Date.ToString("d", new System.Globalization.CultureInfo("en-US"))</div>
+        </div>
+        <div class="colavis">
+            @if (ViewBag.Auth)
+            {
+                using (Html.BeginForm("Supprimer", "Avis", FormMethod.Get, new { @class = "supp" }))
+                {
+                    @Html.Hidden("id", avis.Id)
+                    <input type="image" src="~/Content/image/suppActu.png" name="imagesupp" class="imagesupp" />
+                }
+            }
+            <div class="desavis"> @avis.Opinion </div>
+        </div>
+    </div>
+
+}
+
+@if (Model.Count() == 0)
+{
+    <div id="pasavis"> No opinion for the moment </div>
+}
+
+    <h2 id="titrepostavis" onclick="afficheform()"> Post your opinion </h2>
+

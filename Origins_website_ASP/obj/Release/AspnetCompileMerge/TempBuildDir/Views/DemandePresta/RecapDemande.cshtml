@@ -1,0 +1,80 @@
+﻿@model Origins_website_ASP.Models.DemandePrestation.Prestation
+@{
+    ViewBag.Title = "Origin's Krew - Demande de prestations";
+    ViewBag.Content = "Vous avez besoin de nos services utilisez notre outil de demande de prestaions";
+    Layout = "~/Views/Shared/_LayoutCommun.cshtml";
+}
+
+@section insertions
+{
+    <link rel="stylesheet" href="~/Content/css/demande.css" />
+}
+
+<div id="corpsdepage">
+    <div class="partiecorps">
+        <h1> Résume de la demande </h1>
+
+        <div id="recapid">
+            <div class="elemid">
+                @Model.Nom  @Model.Prenom 
+            </div>
+            <div class="elemid">
+                Mail : @Model.Email
+            </div>
+            <div class="elemid">
+                Téléphone : @Model.Telephone
+            </div>
+        </div>
+        <div id="recapstruc">
+            <div class="elemrecapstruc">
+                @Model.Type, 
+                @if (@Model.Type != "particulier")
+                {
+                        @Model.NomStructure
+                }
+            </div>
+            <div class="elemrecapstruc">
+                @Model.Pays,
+                @if (Model.Pays == "France")
+                {
+                    @Model.CodePostal
+                }
+                else if (Model.Pays == "EtatsUnis")
+                {
+                    @Model.VilleEU  @Model.Etat
+                }
+                else
+                {
+                    @Model.VilleAutre
+                }
+            </div>
+        </div>
+
+        <h2> Prestation demandée </h2>
+        <div id="recappresta">
+            @if (Model.ChoixPrestation == "representation")
+            {
+                <span class='elempresta'>@Model.Occurence @Model.ChoixPrestation de @Model.TempsPresta minutes.</span><br/>
+                <span class='elempresta'>Initiation hip-hop voulue: @Model.Initiation</span><br/>
+                <span class='elempresta'>Budget: @Model.Budget €.</span>
+            }
+            else if (Model.ChoixPrestation == "stage")
+            {
+                <span class='elempresta'>@Model.ChoixPrestation de @Model.DureeStage</span><br/>
+                <span class='elempresta'>Date de début: @Model.Date.ToShortDateString()</span><br/>
+                <span class='elempresta'>Niveau: @Model.Niveau</span>
+            }
+            else
+            {
+                <span class='elempresta'>Informations pour des cours de breakdance.</span>
+            }
+        </div>
+        <h2> Informations complémentaire </h2>
+        <div id="recapinfo">
+            @Model.InfoComplementaire
+        </div>
+        <div id="creerpdf">@Html.ActionLink("Récapitulatif sous format pdf", "RecapPDF", "DemandePresta", new { id = Model.Id}, new { target = "_blank"})</div>
+        <div id="lienhome">@Html.ActionLink("Retourner à l'acceuil.", "Deconnexion", "Login")</div>
+    </div>
+</div>
+

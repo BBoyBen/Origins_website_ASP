@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <meta name="description" content="@ViewBag.Content Origin's compagnie de danse hip-hop/breakdance." />
+    <link rel="stylesheet" href="~/Content/css/reset.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/css/style.css" />
+    <link rel="stylesheet" href="~/Content/css/menu.css" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src='~/Content/javascript/menu.js'></script>
+    <script src='~/Content/javascript/son.js'></script>
+    <link rel="shortcut icon" href="~/Content/image/iconorigins.ico" />
+    @RenderSection("insertions")
+    <title>@ViewBag.Title - Danse hip-hop/breakdance</title>
+</head>
+<body>
+    <header>
+        <div id="iconMenu" onclick="afficherMenu()">
+            <div id="lignehaut"></div><br />
+            <div id="lignemilieu"></div><br />
+            <div id="lignebas"></div>
+        </div>
+        <div id="logoOrigin">
+            <a class='logo' href="/"><img src="~/Content/image/origins_logo.jpg" id="imgLogoOrigins" alt="logo origins" onclick="EvalSoundTitre()" /></a>
+        </div>
+
+        @if (ViewBag.Langue == "fr")
+        {
+            string req = HttpContext.Current.Request.Url.AbsolutePath;
+            if (req.Split('/').ToList().Last() == "fr")
+            {
+                req = req.Substring(0, req.Count() - 3) + "/en";
+            }
+            else
+            {
+                req = req + "?id=en";
+            }
+
+            <a href=@req><img src="~/Content/image/en.jpg" alt="english" class="langue" /></a>
+            if (ViewBag.Auth)
+            {
+                using (Html.BeginForm("Deconnexion", "Login", FormMethod.Get, new { @class = "deco" }))
+                {
+                    <input type="image" src="~/Content/image/deco.png" name="deconnexion" id="deconnexion" />
+                }
+            }
+
+            if (ViewBag.ShowOsquad == null)
+            {
+                <div id="logoOsqua">@Html.ActionLink("O'Squad", "Index", "Osquad", null, new { @class = "logo" })</div>
+            }
+
+            <div id="menu">
+                <ul class="menu">
+                    <li class="menu_item">@Html.ActionLink("HOME", "Index", "Home", null, new { @id = "menuHome" })</li>
+                    <li class="menu_item" onclick="">
+                        <span id="menuMembres">MEMBRES</span>
+                        <ul class='sousMenu'>
+                            <li class="elem">@Html.ActionLink("Origin's", "Origins", "Membres")</li>
+                            <li class="elem">@Html.ActionLink("O'Squad", "Osquad", "Membres")</li>
+                        </ul>
+                    </li>
+                    <li class="menu_item" onclick="">
+                        <span id="menuPresta">PRESTATIONS</span>
+                        <ul class='sousMenu'>
+                            <li class="elem">@Html.ActionLink("Spectacles", "Spectacles", "Prestations")</li>
+                            <li class="elem">@Html.ActionLink("Cours", "Cours", "Prestations")</li>
+                            <li class="elem">@Html.ActionLink("Formation / Stage", "Formation", "Prestations")</li>
+                        </ul>
+                    </li>
+                    <li class="menu_item">@Html.ActionLink("CONTACT", "Index", "Contact", null, new { @id = "menuContact" })</li>
+                    <li class="menu_item">@Html.ActionLink("AVIS", "Index", "Avis", null, new { @id = "menuAvis" })</li>
+                </ul>
+            </div>
+        }
+        else
+        {
+            string req = HttpContext.Current.Request.Url.AbsolutePath;
+            if (req.Split('/').ToList().Last() == "en")
+            {
+                req = req.Substring(0, req.Count() - 3) + "/fr";
+            }
+            else
+            {
+                req = req + "?id=fr";
+            }
+            <a href=@req><img src="~/Content/image/fr.jpg" alt="english" class="langue" /></a>
+            <div id="logoOsqua">@Html.ActionLink("O'Squad", "Index", "Osquad", new { id = "en" }, new { @class = "logo" })</div>
+            <div id="menu">
+                <ul class="menu">
+                    <li class="menu_item">@Html.ActionLink("HOME", "Index", "Home", new { id = "en" }, new { @id = "menuHome" })</li>
+                    <li class="menu_item" onclick="">
+                        <span id="menuMembres">MEMBERS</span>
+                        <ul class='sousMenu'>
+                            <li class="elem">@Html.ActionLink("Origin's", "Origins", "Membres", new { id = "en" }, null)</li>
+                            <li class="elem">@Html.ActionLink("O'Squad", "Osquad", "Membres", new { id = "en" }, null)</li>
+                        </ul>
+                    </li>
+                    <li class="menu_item" onclick="">
+                        <span id="menuPresta">OUR SERVICES</span>
+                        <ul class='sousMenu'>
+                            <li class="elem">@Html.ActionLink("Spectacle", "Spectacles", "Prestations", new { id = "en" }, null)</li>
+                            <li class="elem">@Html.ActionLink("Lessons", "Cours", "Prestations", new { id = "en" }, null)</li>
+                            <li class="elem">@Html.ActionLink("Formation / Traineeship", "Formation", "Prestations", new { id = "en" }, null)</li>
+                        </ul>
+                    </li>
+                    <li class="menu_item">@Html.ActionLink("CONTACT", "Index", "Contact", new { id = "en" }, new { @id = "menuContact" })</li>
+                    <li class="menu_item">@Html.ActionLink("OPINION", "Index", "Avis", new { id = "en" }, new { @id = "menuAvis" })</li>
+                </ul>
+            </div>
+        }
+    </header>
+
+    
+    @RenderBody()
+
+    <footer>
+        @RenderSection("footer", required: false)
+        <div id="copyright">
+            <ul>
+                <li id="list_copyright"> © 2019, @Html.ActionLink("Origin's Krew", "Index", "Home", null, new { @id="lien_footer"}) - 
+                <a href="~/Content/CGU/condition_utilisation_mentions_legales.pdf" target="_blank" style="color: white;"> Conditions d'utilisation et mentions légales </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+    @RenderSection("ajout", required: false)
+</body>
+</html>

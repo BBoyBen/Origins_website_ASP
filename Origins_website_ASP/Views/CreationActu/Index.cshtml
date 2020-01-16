@@ -1,0 +1,78 @@
+﻿@model Origins_website_ASP.ViewModels.CreationViewModel
+@{
+    ViewBag.Title = "Ajout actualite";
+    ViewBag.Content = "";
+    Layout = "~/Views/Shared/_LayoutCommun.cshtml";
+}
+
+@section insertions
+{
+    <link rel="stylesheet" href="~/Content/css/createActu.css" />    
+}
+
+<div id="corpsdepage">
+    <div class="partiecorps">
+        <h1> Ajouter une nouvelle actualité </h1>
+
+        @using (Html.BeginForm("Index", "CreationActu", FormMethod.Post, new { enctype = "multipart/form-data"}))
+        {
+            <fieldset id="anglversoion">
+                @Html.LabelFor(model => model.VersionEn)
+                @Html.CheckBoxFor(model => model.VersionEn)
+            </fieldset>
+            <fieldset id="oblig">
+                <div class="elemoblig">
+                    @Html.LabelFor(model => model.Titre)<br/>
+                    @Html.TextBoxFor(model => model.Titre)
+                </div>
+                <div class="elemoblig versionangl" style="display: none;">
+                    @Html.LabelFor(model => model.TitreEn)<br/>
+                    @Html.TextBoxFor(model => model.TitreEn)
+                </div>
+
+                <div class="elemoblig">
+                    @Html.LabelFor(model => model.Description)<br/>
+                    @Html.TextAreaFor(model => model.Description, 10, 50, null)
+                </div>
+                <div class="elemoblig versionangl" style="display: none;">
+                    @Html.LabelFor(model => model.DescriptionEn)<br/>
+                    @Html.TextAreaFor(model => model.DescriptionEn, 10, 50, null)
+                </div>
+            </fieldset>
+
+            <fieldset>
+                Ajouter une image <img src="~/Content/image/plus.png" class="ajout" onclick="ajouteruneimage()" />
+                @Html.HiddenFor(model => model.NombrePhoto)
+                <div id="ajoutimage"></div>
+            </fieldset>
+
+            <fieldset>
+                Ajouter une vidéo <img src="~/Content/image/plus.png" class="ajout" onclick="ajouterunevideo()" />
+                @Html.HiddenFor(model => model.NombreVideo)
+                <div id="ajoutvideo"></div>
+            </fieldset>
+
+            <fieldset>
+                Ajouter un lien <img src="~/Content/image/plus.png" class="ajout" onclick="ajouterunlien()" />
+                @Html.HiddenFor(model => model.NombreLien)
+                <div id="ajoutlien"></div>
+            </fieldset>
+
+            <fieldset id="typeactu">
+                Type d'actualité:
+                <span class="elemtype">@Html.CheckBoxFor(model => model.Type.Spectacle, new { @checked = "checked"}) @Html.LabelFor(model => model.Type.Spectacle)</span>
+                <span class="elemtype">@Html.CheckBoxFor(model => model.Type.Video) @Html.LabelFor(model => model.Type.Video)</span>
+                <span class="elemtype">@Html.CheckBoxFor(model => model.Type.Evenement) @Html.LabelFor(model => model.Type.Evenement)</span>
+                <span class="elemtype">@Html.CheckBoxFor(model => model.Type.Cours) @Html.LabelFor(model => model.Type.Cours)</span>
+                <span class="elemtype">@Html.CheckBoxFor(model => model.Type.Autre) @Html.LabelFor(model => model.Type.Autre)</span>
+            </fieldset>
+
+            <input type="submit" name="ajouter" id="ajouter" value="Ajouter" />
+        }
+    </div>
+</div>
+
+@section ajout
+{
+    <script src='~/Content/javascript/createActu.js'></script>    
+}

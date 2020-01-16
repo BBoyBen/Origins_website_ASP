@@ -1,0 +1,121 @@
+#menuAvis {
+    color: white;
+    border-bottom: 3px solid red;
+}
+
+h1
+{
+	padding-bottom: 20px;
+	margin-bottom: 40px;
+	border-bottom: 2px solid black;
+}
+
+input
+{
+	border-radius: 5px;
+	box-shadow: 3px 3px 2px black;
+}
+
+.elemavis
+{
+	display: flex;
+	padding-bottom: 20px;
+	margin-bottom: 40px;
+	border-bottom: 1px solid grey;
+	align-items: center;
+}
+
+.colavis:nth-child(1)
+{
+	width: 40%;
+	padding-left: 5%;
+	padding-bottom: 10px;
+	padding-right: 2%;	
+	text-align: left;
+	border-right: 1px solid grey;
+}
+
+.colavis:nth-child(2)
+{
+	padding-left: 2%;
+	width: 60%;
+}
+
+.nomavis
+{
+	font-size: 25px;
+}
+
+.etoileavis
+{
+	width: 18%;
+	height: auto;
+}
+.dateavis
+{
+	text-align: center;
+	font-size: 12px;
+	color: grey;
+}
+
+.desavis
+{
+	text-align: left;
+}
+
+.etoile
+{
+	width: 5%;
+	height: auto;
+}
+
+#note
+{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#poster, #reset
+{
+	font-family: red_rose;
+}
+
+#titrepostavis:hover
+{
+	cursor: pointer;
+	color: grey;
+}
+
+#nomIncorrect, #desIncorrect {
+    color: red;
+}
+
+.supp {
+    float: right;
+}
+
+.imagesupp {
+    width: 30px;
+    height: auto;
+}
+
+#cgu {
+    margin-left: 5%;
+    padding-bottom: 0.5em;
+}
+
+#valideCgu {
+    height: 1.4em;
+    width: 1.4em;
+    margin-top: 0.5em;
+}
+
+/* Propriété pour les mobile */
+
+@media all and (max-device-width: 480px) 
+{
+    textarea {
+        max-width: 100%;
+        height: auto;
+    }
+}

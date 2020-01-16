@@ -1,0 +1,266 @@
+﻿@model Origins_website_ASP.ViewModels.ActusViewModel
+<div id="cont_acceuil">
+    <div id="carousselHome" class="flex_photo carousel @ViewBag.CarrousselFade" data-ride="carousel" data-interval="5000">
+        <div class="carousel-inner">
+            @for (int i = 0; i < Model.AllNomPhotosAcceuil.Count; i++)
+            {
+                if (i == 0)
+                {
+                    <div class="carousel-item active diapo">
+                        <img src="~/Content/photo_acceuil/@Model.AllNomPhotosAcceuil.ElementAt(i)" alt="photo acceuil" class="photoDiapo" />
+                    </div>
+                }
+                else
+                {
+                    <div class="carousel-item diapo">
+                        <img src="~/Content/photo_acceuil/@Model.AllNomPhotosAcceuil.ElementAt(i)" alt="photo acceuil" class="photoDiapo" />
+                    </div>
+                }
+            }
+        </div>
+        <a id="prevButton" class="carousel-control-prev" href="#carousselHome" role="button" data-slide="prev" onclick="userAction();" >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a id="nextButton" class="carousel-control-next" href="#carousselHome" role="button" data-slide="next" onclick="userAction();">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+
+        <script>window.onload = EvalSoundTitre();</script>
+    </div>
+
+    <div class="partiecorps">
+        Origin's is a hip hop company specialized in breakdance. We offer lessons for all levels, spectacle as little show or long creation. Our association also offers initiation to martial arts or tricks.
+    </div>
+    <div class="partiecorps"><iframe src="https://player.vimeo.com/video/235508984" width="640" height="360" allowfullscreen></iframe></div>
+
+    <div class="partiecorps">
+        <div id="actu">
+            <h1> What's up ? </h1>
+            <form id="formchoixactus">
+                <div class="affichactus">
+                    <label for="choixafficher"> Show: </label>
+                    <select name="choixafficher" id="choixafficher">
+                        <option value="tout"> All </option>
+                        <option value="type"> Type </option>
+                        <option value="date"> Date </option>
+                    </select>
+                </div>
+
+                <div class="affichactus" style="display: none;">
+                    <label for="choixtype"> -> </label>
+                    <select name="choixtype" id="choixtype">
+                        <option value="spectacle" selected> Spectacle </option>
+                        <option value="video"> Video </option>
+                        <option value="evenement"> Events </option>
+                        <option value="cours"> Lessons </option>
+                        <option value="autre"> Other </option>
+                    </select>
+                </div>
+
+                <div class="affichactus" style="display: none;">
+                    <label for="datedebut"> since: </label>
+                    <input type="date" name="datedebut" id="datedebut" />
+                </div>
+            </form>
+        </div>
+
+        @if (Model.Actualites.Count > 0)
+        {
+            for (int i = Model.Actualites.Count - 1; i >= 0; i--)
+            {
+                Origins_website_ASP.Models.Actualites.Actualite actu = Model.Actualites.ElementAt(i);
+                if (actu.VersionEn && actu.Affiche)
+                {
+                    string typeActu = "";
+                    if (actu.Spectacle)
+                    {
+                        typeActu = typeActu + " spectacle";
+                    }
+                    if (actu.Video)
+                    {
+                        typeActu = typeActu + " video";
+                    }
+                    if (actu.Evenement)
+                    {
+                        typeActu = typeActu + " evenement";
+                    }
+                    if (actu.Cours)
+                    {
+                        typeActu = typeActu + " cours";
+                    }
+                    if (actu.Autre)
+                    {
+                        typeActu = typeActu + " autre";
+                    }
+        <div class="actualite @typeActu">
+            <div class="dateactu" data-annee="@actu.Date.Year" data-mois="@actu.Date.Month" data-jour="@actu.Date.Day">
+                @actu.Date.ToString("D", new System.Globalization.CultureInfo("en-US"))
+            </div>
+            @if (ViewBag.Auth)
+            {
+                using (Html.BeginForm("Cacher", "Home", FormMethod.Get, new { @class = "supp" }))
+                {
+                    @Html.Hidden("id", actu.Id)
+                    <input type="image" src="~/Content/image/suppActu.png" name="imagesupp" class="imagesupp" />
+                }
+            }
+            <h2 class="titreActu">@actu.TitreEn</h2>
+            <span class="desActu">@actu.DescriptionEn</span>
+
+            @if (Model.Videos.Count() > 0)
+            {
+                foreach (Origins_website_ASP.Models.Actualites.Video v in Model.Videos)
+                {
+                    if (v.IdActualite == actu.Id)
+                    {
+                        if (v.Site == Origins_website_ASP.Models.Actualites.Site.Viméo)
+                        {
+                            <div><iframe src="https://player.vimeo.com/video/@v.NumVideo" width="640" height="360" allowfullscreen></iframe></div>
+                            <div class="source"> Source : <a href=@v.Source target="_blank"> Vimeo </a></div>
+                        }
+                        else
+                        {
+                            <div><iframe src="https://youtube.com/embed/@v.NumVideo" width="640" height="360" allowfullscreen></iframe></div>
+                            <div class="source"> Source : <a href=@v.Source target="_blank"> YouTube </a></div>
+                        }
+                    }
+                }
+            }
+
+            @if (Model.Photos.Count() > 0)
+            {
+                foreach (Origins_website_ASP.Models.Actualites.Photo p in Model.Photos)
+                {
+                    if (p.IdActualite == actu.Id)
+                    {
+                        <div><img src=@p.Url class="imgActus" alt=@p.TexteAltEn /></div>
+                    }
+                }
+            }
+
+            @if (Model.Liens.Count() > 0)
+            {
+                foreach (Origins_website_ASP.Models.Actualites.Lien l in Model.Liens)
+                {
+                    if (l.IdActualite == actu.Id)
+                    {
+                        if (l.TexteAvantEn != null)
+                        {
+                            @l.TexteAvantEn
+                        }
+                        <div> <a href=@l.Source target="_blank"> @l.TexteEn </a></div>
+                    }
+                }
+            }
+        </div>
+                }
+            }
+            if (ViewBag.Auth)
+            {
+                <h2> Actualité non affichées </h2>
+                for (int i = Model.Actualites.Count - 1; i >= 0; i--)
+                {
+                    Origins_website_ASP.Models.Actualites.Actualite actu = Model.Actualites.ElementAt(i);
+                    if (actu.VersionEn && !actu.Affiche)
+                    {
+                        string typeActu = "";
+                        if (actu.Spectacle)
+                        {
+                            typeActu = typeActu + " spectacle";
+                        }
+                        if (actu.Video)
+                        {
+                            typeActu = typeActu + " video";
+                        }
+                        if (actu.Evenement)
+                        {
+                            typeActu = typeActu + " evenement";
+                        }
+                        if (actu.Cours)
+                        {
+                            typeActu = typeActu + " cours";
+                        }
+                        if (actu.Autre)
+                        {
+                            typeActu = typeActu + " autre";
+                        }
+                <div class="actualite @typeActu">
+                    <div class="dateactu" data-annee="@actu.Date.Year" data-mois="@actu.Date.Month" data-jour="@actu.Date.Day">
+                        @actu.Date.ToString("D", new System.Globalization.CultureInfo("en-US"))
+                    </div>
+                    @if (ViewBag.Auth)
+                    {
+                        using (Html.BeginForm("Afficher", "Home", FormMethod.Get, new { @class = "supp" }))
+                        {
+                            @Html.Hidden("id", actu.Id)
+                            <input type="image" src="~/Content/image/aff.png" name="imagesupp" class="imagesupp" />
+                        }
+                        using (Html.BeginForm("Supprimer", "Home", FormMethod.Get, new { @class = "supp" }))
+                        {
+                            @Html.Hidden("id", actu.Id)
+                            <input type="image" src="~/Content/image/poubelle.png" name="imagesupp" class="imagesupp" />
+                        }
+                    }
+                    <h2>@actu.TitreEn</h2>
+                    @actu.DescriptionEn
+
+                    @if (Model.Videos.Count() > 0)
+                    {
+                        foreach (Origins_website_ASP.Models.Actualites.Video v in Model.Videos)
+                        {
+                            if (v.IdActualite == actu.Id)
+                            {
+                                if (v.Site == Origins_website_ASP.Models.Actualites.Site.Viméo)
+                                {
+                                    <div><iframe src="https://player.vimeo.com/video/@v.NumVideo" width="640" height="360" allowfullscreen></iframe></div>
+                                    <div class="source"> Source : <a href=@v.Source target="_blank"> Vimeo </a></div>
+                                }
+                                else
+                                {
+                                    <div><iframe src="https://youtube.com/embed/@v.NumVideo" width="640" height="360" allowfullscreen></iframe></div>
+                                    <div class="source"> Source : <a href=@v.Source target="_blank"> YouTube </a></div>
+                                }
+                            }
+                        }
+                    }
+
+                    @if (Model.Photos.Count() > 0)
+                    {
+                        foreach (Origins_website_ASP.Models.Actualites.Photo p in Model.Photos)
+                        {
+                            if (p.IdActualite == actu.Id)
+                            {
+                                <div><img src=@p.Url class="imgActus" alt=@p.TexteAltEn /></div>
+                            }
+                        }
+                    }
+
+                    @if (Model.Liens.Count() > 0)
+                    {
+                        foreach (Origins_website_ASP.Models.Actualites.Lien l in Model.Liens)
+                        {
+                            if (l.IdActualite == actu.Id)
+                            {
+                                if (l.TexteAvantEn != null)
+                                {
+                                    @l.TexteAvantEn
+                                }
+                                <div> <a href=@l.Source target="_blank"> @l.TexteEn </a></div>
+                            }
+                        }
+                    }
+                </div>
+                    }
+                }
+            }
+        }
+
+        <div id="pasactus" style="display: none;"> No actuality to show </div>
+    </div>
+</div>
+
+
+
+

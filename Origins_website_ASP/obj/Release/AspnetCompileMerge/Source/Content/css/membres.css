@@ -1,0 +1,139 @@
+#menuMembres {
+    color: white;
+    border-bottom: 3px solid red;
+}
+
+.photomembre
+{
+	width: 75%;
+	height: auto;
+	padding-right: 5%;
+	float: right;
+}
+
+.photomembreobro
+{
+	width: 45%;
+	height: auto;
+}
+
+.presentation
+{
+	padding-left: 10%;
+}
+
+table
+{
+	border-collapse: collapse;
+	text-align: left;
+	margin-right: 5%;
+}
+
+td
+{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 25px;
+	vertical-align: middle;
+}
+
+.topligne
+{
+	border-top: 1px solid grey;
+}
+
+.speobro
+{
+	text-align: center;
+}
+
+.titre
+{
+	margin-top: 30px;
+	padding-bottom: 20px;
+}
+
+.cv
+{
+	color: black;
+}
+
+.cv:hover
+{
+	color: grey;
+}
+
+.listeCours
+{
+	text-align: left;
+	margin-left: 5%;
+	padding-top: 3%;
+	padding-bottom: 3%;
+	list-style-type: square;
+}
+
+.autre
+{
+	padding-right: 5%;
+}
+
+#suivant
+{
+	width: 5%;
+	height: auto;
+	position: fixed;
+	right: 3%;
+	top: 70%;
+}
+
+#precedent
+{
+	width: 5%;
+	height: auto;
+	position: fixed;
+	left: 3%;
+	top: 70%;
+}
+
+#suivant:hover
+{
+	cursor: pointer;
+}
+
+#precedent:hover
+{
+	cursor: pointer;
+}
+
+.insta:hover
+{
+	color: black;
+}
+
+/* Propriétés pour les mobiles */
+
+@media all and (max-device-width: 480px)
+{
+	.partiecorps
+	{
+		display: block;
+        width: 100%;
+	}
+
+    .photomembre 
+    {
+        width: 150%;
+        padding-left: 10%;
+    }
+
+    .photoNassir 
+    {
+        width: 90%;
+        text-align: center;
+    }
+
+    .photomembreobro 
+    {
+        width: 70%;
+    }
+}

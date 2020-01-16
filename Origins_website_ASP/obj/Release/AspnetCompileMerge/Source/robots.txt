@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /Login/
+Disallow: /Content/
+
+
+sitemap: https://www.originskrew.com/sitemap.xml

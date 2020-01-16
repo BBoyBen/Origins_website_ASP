@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Origin's Krew - Cours - Enfants/Adultes";
+    ViewBag.Content = "La compagnie Origin's dispense des cours de breakdance (adulte et enfant) dans différents encroits, surtout au alentour de Clermont-Ferrand.";
+    Layout = "~/Views/Shared/_LayoutCommun.cshtml";
+}
+
+@section insertions
+{
+    <link rel="stylesheet" href="~/Content/css/prestations.css" />    
+}
+
+@if (ViewBag.Langue == "fr")
+{
+    @Html.Partial("cours_fr")
+}
+else
+{
+    @Html.Partial("cours_en")
+}
+

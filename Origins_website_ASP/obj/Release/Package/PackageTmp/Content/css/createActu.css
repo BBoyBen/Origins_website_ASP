@@ -1,0 +1,65 @@
+#oblig
+{
+	display: flex;
+	flex-direction: column;
+}
+
+.elemoblig
+{
+	margin-top: 20px;
+}
+
+.ajout
+{
+	width: 3%;
+	height: auto;
+	padding-left: 10px;
+}
+
+fieldset
+{
+	margin-bottom: 30px;
+}
+
+.elemajoutvideo, .elemajoutlien, .elemajoutimage
+{
+	margin-top: 10px;
+}
+
+#typeactu, #ajoutvideo, #ajoutlien, #ajoutimage
+{
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	margin-left: 5%;
+}
+
+#connexion
+{
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+.inputlog
+{
+	width: 18%;
+	margin-left: 41%;
+	margin-bottom: 50px;
+	text-align: center;
+	border-radius: 5px;
+	box-shadow: 3px 3px 2px black;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.labellog
+{
+	margin-bottom: 10px;
+}
+
+#seco
+{
+	background-color: darkgrey;
+	font-family: red_rose;
+}

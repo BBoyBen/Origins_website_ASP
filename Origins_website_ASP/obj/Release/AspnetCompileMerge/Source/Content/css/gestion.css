@@ -1,0 +1,23 @@
+﻿input 
+{
+    border-radius: 5px;
+    box-shadow: 3px 3px 2px black;
+    margin-top: 5%;
+}
+
+#deco {
+    font-family: red_rose;
+}
+
+#question {
+    padding-bottom: 30px;
+}
+
+.listechoix {
+    list-style-type: circle;
+}
+
+.choixgestion {
+    text-align: left;
+    padding-left: 40%;
+}

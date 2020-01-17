@@ -41,7 +41,9 @@ namespace Origins_website_ASP.Controllers
                 DateTime date = DateTime.Now;
                 if (!nom.IsNullOrWhiteSpace() & !opinion.IsNullOrWhiteSpace())
                 {
-                    dal.CreerAvis(nom, date, rate, opinion);
+                    int retour = dal.CreerAvis(nom, date, rate, opinion);
+                    if (retour == -1)
+                        ViewBag.ActionErreur = "d'ajout d'un avis";
                 }
                 return RedirectToAction("Index");
             }
@@ -55,7 +57,10 @@ namespace Origins_website_ASP.Controllers
 
             using (IDal dal = new Dal())
             {
-                dal.SupprimerAvis(id);
+                int retour = dal.SupprimerAvis(id);
+                if (retour == -1)
+                    ViewBag.ActionErreur = "suppression d'un avis";
+
                 return RedirectToAction("Index", "Avis");
             }
         }

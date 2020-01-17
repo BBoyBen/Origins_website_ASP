@@ -1,16 +1,11 @@
 ﻿using Origins_website_ASP.Models.Actualites;
 using Origins_website_ASP.Models.Administrateurs;
 using Origins_website_ASP.Models.DemandePrestation;
-using Origins_website_ASP.Utils;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Validation;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
-using System.Web.Security;
 using Type = Origins_website_ASP.Models.Actualites.Type;
 
 namespace Origins_website_ASP.Models

@@ -14,9 +14,9 @@ namespace Origins_website_ASP.Models
     {
         List<Actualite> ObtenirToutesLesActus();
         Actualite ObtientActu(int id);
-        void CacherActus(int id);
-        void AfficherActu(int id);
-        void SupprimerActu(int id);
+        int CacherActus(int id);
+        int AfficherActu(int id);
+        int SupprimerActu(int id);
 
         int CreerActu(string titre, string des, DateTime date, Type type,  bool versionen);
         int CreerLien(int idActu, string texte, string source, string texteAvant);
@@ -36,8 +36,8 @@ namespace Origins_website_ASP.Models
 
         List<Avis> ObtenirTousLesAvis();
         Avis ObtientAvis(int id);
-        void CreerAvis(string nom, DateTime date, int note, string opi);
-        void SupprimerAvis(int id);
+        int CreerAvis(string nom, DateTime date, int note, string opi);
+        int SupprimerAvis(int id);
 
         Prestation ObtientPrestation(int id);
         int CreerPrestation(Identite identite, Structure structure, Choix choix);

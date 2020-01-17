@@ -215,165 +215,304 @@ namespace Origins_website_ASP.Models
 
         public Photo ObtientPhoto(int id)
         {
-            return bdd.Photos.FirstOrDefault(photo => photo.Id == id);
+            try
+            {
+                return bdd.Photos.FirstOrDefault(photo => photo.Id == id);
+            }catch (Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur récupération de photo id -> " + id + " : " + e);
+                return null;
+            }
         }
 
         public List<Video> ObtenirToutesLesVideo()
         {
-            return bdd.Videos.ToList();
+            try
+            {
+                return bdd.Videos.ToList();
+            }catch (Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur récupération de toutes les videos : " + e);
+                return new List<Video>();
+            }
         }
 
         public List<Photo> ObtenirToutesLesPhotos()
         {
-            return bdd.Photos.ToList();
+            try
+            {
+                return bdd.Photos.ToList();
+            }catch (Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur récupration de toutes les photos : " + e);
+                return new List<Photo>();
+            }
         }
 
         public List<Lien> ObtenirTousLesLiens()
         {
-            return bdd.Liens.ToList();
+            try
+            {
+                return bdd.Liens.ToList();
+            }catch (Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur récupération de tous les liens : " + e);
+                return new List<Lien>();
+            }
         }
 
-        public void CacherActus (int id)
+        public int CacherActus (int id)
         {
-            this.ObtientActu(id).Affiche = false;
-            bdd.SaveChanges();
+            try
+            {
+                this.ObtientActu(id).Affiche = false;
+                bdd.SaveChanges();
+                return 1;
+            }catch(Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur cacher actualité id -> " + id + " : " + e);
+                return -1;
+            }
         }
 
-        public void AfficherActu (int id)
+        public int AfficherActu (int id)
         {
-            this.ObtientActu(id).Affiche = true;
-            bdd.SaveChanges();
+            try
+            {
+                this.ObtientActu(id).Affiche = true;
+                bdd.SaveChanges();
+                return 1;
+            } catch (Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur affichage de l'actualitée id -> " + id + " : " + e);
+                return -1;
+            }
         }
 
-        public void SupprimerActu (int id)
+        public int SupprimerActu (int id)
         {
-            Actualite asupp = ObtientActu(id);
-            bdd.Actualites.Remove(asupp);
-            bdd.SaveChanges();
+            try
+            {
+                Actualite asupp = ObtientActu(id);
+                bdd.Actualites.Remove(asupp);
+                bdd.SaveChanges();
+                return 1;
+            }catch (Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur suppression actualitée id -> " + id + " : " + e);
+                return -1;
+            }
         }
 
         public List<Avis> ObtenirTousLesAvis()
         {
-            return bdd.Avis.ToList();
+            try
+            {
+                return bdd.Avis.ToList();
+            }catch (Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur récupération de tous les avis : " + e);
+                return new List<Avis>();
+            }
         }
 
         public Avis ObtientAvis(int id)
         {
-            return bdd.Avis.FirstOrDefault(a => a.Id == id);
+            try
+            {
+                return bdd.Avis.FirstOrDefault(a => a.Id == id);
+            }catch(Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur récupération de l'avis id -> " + id + " : " + e);
+                return null;
+            }
         }
 
-        public void CreerAvis(string nom, DateTime date, int note, string opi)
+        public int CreerAvis(string nom, DateTime date, int note, string opi)
         {
-            bdd.Avis.Add(new Avis { Date = date, Note = note, Nom = nom, Opinion = opi });
-            bdd.SaveChanges();
+            try
+            {
+                bdd.Avis.Add(new Avis { Date = date, Note = note, Nom = nom, Opinion = opi });
+                bdd.SaveChanges();
+                return bdd.Avis.Last().Id;
+            }catch(Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur création avis : " + e);
+                return -1;
+            }
         }
 
-        public void SupprimerAvis (int id)
+        public int SupprimerAvis (int id)
         {
-            Avis asupp = ObtientAvis(id);
-            bdd.Avis.Remove(asupp);
-            bdd.SaveChanges();
+            try
+            {
+                Avis asupp = ObtientAvis(id);
+                bdd.Avis.Remove(asupp);
+                bdd.SaveChanges();
+                return 1;
+            }catch(Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur suppression avis id -> " + id + " : " + e);
+                return -1;
+            }
         }
 
         public Prestation ObtientPrestation(int id)
         {
-            return bdd.Prestations.FirstOrDefault(p => p.Id == id);
+            try
+            {
+                return bdd.Prestations.FirstOrDefault(p => p.Id == id);
+            }catch(Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur récupération de la prestation id -> " + id + " : " + e);
+                return null;
+            }
         }
 
         public List<Prestation> ObtenirToutesLesDemande ()
         {
-            return bdd.Prestations.ToList();
+            try
+            {
+                return bdd.Prestations.ToList();
+            }catch(Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur récupration de toutes les prestations : " + e);
+                return new List<Prestation>();
+            }
         }
 
         public int CreerPrestation (Identite identite, Structure structure, Choix choix)
         {
-            bdd.Prestations.Add(new Prestation {
-                DateCreation = DateTime.Now,
-                Prenom = identite.Prenom,
-                Nom = identite.Nom,
-                Email = identite.Email,
-                Telephone = identite.Telephone,
-                Type = structure.Type,
-                NomStructure = structure.NomStructure,
-                Pays = structure.Pays,
-                Etat = structure.Etat,
-                VilleEU = structure.VilleEU,
-                VilleAutre = structure.VilleAutre,
-                CodePostal = structure.CodePostal,
-                ChoixPrestation = choix.ChoixPrestation,
-                TempsPresta = choix.TempsPresta,
-                Occurence = choix.Occurence,
-                Initiation = choix.Initiation,
-                Budget = choix.Budget,
-                Date = choix.Date,
-                DureeStage = choix.DureeStage,
-                Niveau = choix.Niveau,
-                InfoComplementaire = choix.InfoComplementaire
-            });
-            bdd.SaveChanges();
-            return bdd.Prestations.ToList().ElementAt(bdd.Prestations.Count()-1).Id;
+            try
+            {
+                bdd.Prestations.Add(new Prestation
+                {
+                    DateCreation = DateTime.Now,
+                    Prenom = identite.Prenom,
+                    Nom = identite.Nom,
+                    Email = identite.Email,
+                    Telephone = identite.Telephone,
+                    Type = structure.Type,
+                    NomStructure = structure.NomStructure,
+                    Pays = structure.Pays,
+                    Etat = structure.Etat,
+                    VilleEU = structure.VilleEU,
+                    VilleAutre = structure.VilleAutre,
+                    CodePostal = structure.CodePostal,
+                    ChoixPrestation = choix.ChoixPrestation,
+                    TempsPresta = choix.TempsPresta,
+                    Occurence = choix.Occurence,
+                    Initiation = choix.Initiation,
+                    Budget = choix.Budget,
+                    Date = choix.Date,
+                    DureeStage = choix.DureeStage,
+                    Niveau = choix.Niveau,
+                    InfoComplementaire = choix.InfoComplementaire
+                });
+                bdd.SaveChanges();
+                return bdd.Prestations.ToList().ElementAt(bdd.Prestations.Count() - 1).Id;
+            }catch(Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur création de prestation : " + e);
+                return -1;
+            }
         }
 
         public string MailDemandePresta (int id)
         {
-            Prestation presta = ObtientPrestation(id);
-            string message = "Bonjour " + presta.Prenom + " " + presta.Nom + "<br/>" +
-                "Voici vos coordonnées : <br/>" +
-                "Téléphone : " + presta.Telephone + "<br/>" +
-                "Email : " + presta.Email + "<br/><br/>" +
-                "Vous êtes ";
-            if (presta.Type != "Particulier")
-                message += "l'" + presta.Type + " " + presta.NomStructure + "<br/>";
-            else
-                message += "un " + presta.Type + "<br/>";
-            message += presta.Pays + ", ";
-            if (presta.Pays == "France")
-                message += presta.CodePostal + "<br/><br/>";
-            else if (presta.Pays == "EtatsUnis")
-                message += presta.Etat + ", " + presta.VilleEU + "<br/><br/>";
-            else
-                message += presta.VilleAutre + "<br/><br/>";
-            message += "Vous demandez : <br/>";
-            if (presta.ChoixPrestation == "representation")
-                message += presta.Occurence + " représentations de " + presta.TempsPresta + "minutes.<br/>" +
-                    "Avec initiation : " + presta.Initiation + "<br/>" +
-                    "Budget : " + presta.Budget + "€<br/><br/>";
-            else if (presta.ChoixPrestation == "stage")
-                message += "un stage de " + presta.DureeStage + " pour le " + presta.Date.ToShortDateString() + "<br/>" +
-                    "Niveau : " + presta.Niveau + "<br/><br/>";
-            else
-                message += "des informations sur les cours <br/><br/>";
-            message += "Informations complémentaire : \n" + presta.InfoComplementaire + "<br/><br/><br/>" +
-                "Merci de votre demande, Origin's Krew";
-            return message;
+            try
+            {
+                Prestation presta = ObtientPrestation(id);
+                string message = "Bonjour " + presta.Prenom + " " + presta.Nom + "<br/>" +
+                    "Voici vos coordonnées : <br/>" +
+                    "Téléphone : " + presta.Telephone + "<br/>" +
+                    "Email : " + presta.Email + "<br/><br/>" +
+                    "Vous êtes ";
+                if (presta.Type != "Particulier")
+                    message += "l'" + presta.Type + " " + presta.NomStructure + "<br/>";
+                else
+                    message += "un " + presta.Type + "<br/>";
+                message += presta.Pays + ", ";
+                if (presta.Pays == "France")
+                    message += presta.CodePostal + "<br/><br/>";
+                else if (presta.Pays == "EtatsUnis")
+                    message += presta.Etat + ", " + presta.VilleEU + "<br/><br/>";
+                else
+                    message += presta.VilleAutre + "<br/><br/>";
+                message += "Vous demandez : <br/>";
+                if (presta.ChoixPrestation == "representation")
+                    message += presta.Occurence + " représentations de " + presta.TempsPresta + "minutes.<br/>" +
+                        "Avec initiation : " + presta.Initiation + "<br/>" +
+                        "Budget : " + presta.Budget + "€<br/><br/>";
+                else if (presta.ChoixPrestation == "stage")
+                    message += "un stage de " + presta.DureeStage + " pour le " + presta.Date.ToShortDateString() + "<br/>" +
+                        "Niveau : " + presta.Niveau + "<br/><br/>";
+                else
+                    message += "des informations sur les cours <br/><br/>";
+                message += "Informations complémentaire : \n" + presta.InfoComplementaire + "<br/><br/><br/>" +
+                    "Merci de votre demande, Origin's Krew";
+                return message;
+            }catch(Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur génération texte du mail : " + e);
+                return "ERROR";
+            }
         }
 
         public int CreerAdmin (string identifiant, string motDePasse, string prenom)
         {
-            string motDePasseEncode = EncodeMD5(motDePasse);
-            Administrateur administrateur = new Administrateur { Identifiant = identifiant, MotDePasse = motDePasseEncode, Prenom = prenom };
-            bdd.Administrateurs.Add(administrateur);
-            bdd.SaveChanges();
-            return administrateur.Id;
+            try
+            {
+                string motDePasseEncode = EncodeMD5(motDePasse);
+                Administrateur administrateur = new Administrateur { Identifiant = identifiant, MotDePasse = motDePasseEncode, Prenom = prenom };
+                bdd.Administrateurs.Add(administrateur);
+                bdd.SaveChanges();
+                return administrateur.Id;
+            }catch(Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur création admin : " + e);
+                return -1;
+            }
         }
 
         public Administrateur Authentifier(string identifiant, string motDePasse)
         {
-            string motDePasseEncode = EncodeMD5(motDePasse);
-            return bdd.Administrateurs.FirstOrDefault(a => a.Identifiant == identifiant && a.MotDePasse == motDePasseEncode);
+            try
+            {
+                string motDePasseEncode = EncodeMD5(motDePasse);
+                return bdd.Administrateurs.FirstOrDefault(a => a.Identifiant == identifiant && a.MotDePasse == motDePasseEncode);
+            }catch(Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur authentification admin : " + e);
+                return null;
+            }
         }
 
         public Administrateur ObtenirAdmin(int id)
         {
-            return bdd.Administrateurs.FirstOrDefault(u => u.Id == id);
+            try
+            {
+                return bdd.Administrateurs.FirstOrDefault(u => u.Id == id);
+            }catch(Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur récupération admin id -> " + id + " : " + e);
+                return null;
+            }
         }
 
         public Administrateur ObtenirAdmin(string idString)
         {
-            int id;
-            if (int.TryParse(idString, out id))
-                return ObtenirAdmin(id);
-            return null;
+            try
+            {
+                int id;
+                if (int.TryParse(idString, out id))
+                    return ObtenirAdmin(id);
+                return null;
+            }catch (Exception e)
+            {
+                Utils.Logger.Log("ERROR", "Erreur récupération admin par id string -> " + idString + ": " + e);
+                return null;
+            }
         }
 
 

@@ -38,6 +38,12 @@
     <div class="partiecorps">
         <div id="actu">
             <h1> What's up ? </h1>
+
+            @if (ViewBag.ActionErreur != null)
+            {
+                <div class="erreur"> An error happend during the action @ViewBag.ActionErreur, try again or contact the administrator. </div>
+            }
+
             <form id="formchoixactus">
                 <div class="affichactus">
                     <label for="choixafficher"> Show: </label>
@@ -255,6 +261,10 @@
                     }
                 }
             }
+        }
+        else
+        {
+            <div> No actuality to show </div>
         }
 
         <div id="pasactus" style="display: none;"> No actuality to show </div>

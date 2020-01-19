@@ -38,6 +38,12 @@
         <div class="partiecorps">
             <div id="actu">
                 <h1> Quoi de neuf ? </h1>
+
+                @if(ViewBag.ActionErreur != null)
+                {
+                    <div class="erreur"> Une erreur est survenue lors de l'action @ViewBag.ActionErreur, réessayez ou contactez l'administrateur </div>
+                }
+
                 <form id="formchoixactus">
                     <div class="affichactus">
                         <label for="choixafficher"> Afficher: </label>
@@ -251,6 +257,10 @@
                         }
                     }
                 }
+            }
+            else
+            {
+                <div> Aucune actualités à afficher </div>
             }
             <div id="pasactus" style="display: none;"> Aucune actualités à afficher </div>
         </div>

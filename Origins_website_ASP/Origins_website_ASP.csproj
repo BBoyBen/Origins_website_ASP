@@ -247,11 +247,14 @@
     <Content Include="Content\css\reset.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\image\actus\biennalelyon.jpg" />
+    <Content Include="Content\image\actus\cours_dylan_cournon.jpg" />
     <Content Include="Content\image\actus\diffstyleorigins.JPG" />
     <Content Include="Content\image\actus\dimanche_sport.jpg" />
     <Content Include="Content\image\actus\filenchemin_2019.jpg" />
     <Content Include="Content\image\actus\foyerruralsayat.jpg" />
     <Content Include="Content\image\actus\planning_201920.png" />
+    <Content Include="Content\image\actus\received_401079337441791.jpeg" />
+    <Content Include="Content\image\actus\received_570943073675822.jpeg" />
     <Content Include="Content\image\actus\telethonbillom.jpg" />
     <Content Include="Content\image\aff.png" />
     <Content Include="Content\image\deco.png" />

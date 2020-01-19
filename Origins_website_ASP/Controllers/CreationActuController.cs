@@ -63,8 +63,12 @@ namespace Origins_website_ASP.Controllers
                 else
                     idActu = dal.CreerActu(viewModel.Titre, viewModel.Description, date, type, versionEn);
 
+                if (idActu == -1)
+                    ViewBag.ActionErreur = "création actualité";
+
                 if (viewModel.NombrePhoto > 0)
                 {
+                    int retour = 0;
                     string url = "";
                     string textalt = "";
                     string textalten = "";
@@ -78,14 +82,18 @@ namespace Origins_website_ASP.Controllers
                         if (versionEn)
                         {
                             textalten = Request.Form["altimageangl" + i];
-                           dal.CreerPhotoEn(idActu, url, textalt, textalten);
+                           retour = dal.CreerPhotoEn(idActu, url, textalt, textalten);
                         }
                         else
-                            dal.CreerPhoto(idActu, url, textalt);
+                            retour = dal.CreerPhoto(idActu, url, textalt);
+
+                        if (retour == -1)
+                            ViewBag.ActionErreur = "création actualité";
                     }
                 }
                 if (viewModel.NombreVideo > 0)
                 {
+                    int retour = 0;
                     string url = "";
                     string site = "";
                     for(int i=0; i<viewModel.NombreVideo; i++)
@@ -93,13 +101,17 @@ namespace Origins_website_ASP.Controllers
                         url = Request.Form["lienvideo" + i];
                         site = Request.Form["plat" + i];
                         if (site.Equals("vimeo"))
-                            dal.CreerVideo(idActu, url, Site.Viméo);
+                            retour = dal.CreerVideo(idActu, url, Site.Viméo);
                         else
-                            dal.CreerVideo(idActu, url, Site.Youtube);
+                            retour = dal.CreerVideo(idActu, url, Site.Youtube);
+
+                        if (retour == -1)
+                            ViewBag.ActionErreur = "création actualité";
                     }
                 }
                 if (viewModel.NombreLien > 0)
                 {
+                    int retour = 0;
                     string url = "";
                     string texte = "";
                     string texteen = "";
@@ -112,10 +124,13 @@ namespace Origins_website_ASP.Controllers
                         if (versionEn)
                         {
                             texteen = Request.Form["textelienangl" + i];
-                            dal.CreerLienEn(idActu, texte, texteen, url, texteavant, texteavanten);
+                            retour = dal.CreerLienEn(idActu, texte, texteen, url, texteavant, texteavanten);
                         }
                         else
-                            dal.CreerLien(idActu, texte, url, texteavant);
+                            retour = dal.CreerLien(idActu, texte, url, texteavant);
+
+                        if (retour == -1)
+                            ViewBag.ActionErreur = "création actualité";
                     }
                 }
                 return RedirectToAction("Index", "Home");

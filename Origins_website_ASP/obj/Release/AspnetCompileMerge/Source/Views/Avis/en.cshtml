@@ -1,6 +1,11 @@
 ﻿@model List<Origins_website_ASP.Models.Avis>
 <h1> Opinion </h1>
 
+@if (ViewBag.ActionErreur != null)
+{
+    <div class="erreur"> An error happend during the action @ViewBag.ActionErreur, try again or contact the administrator.</div>
+}
+
 @for (int i = Model.Count() - 1; i >= 0; i--)
 {
     Origins_website_ASP.Models.Avis avis = Model.ElementAt(i);
@@ -42,5 +47,5 @@
     <div id="pasavis"> No opinion for the moment </div>
 }
 
-    <h2 id="titrepostavis" onclick="afficheform()"> Post your opinion </h2>
+<h2 id="titrepostavis" onclick="afficheform()"> Post your opinion </h2>
 

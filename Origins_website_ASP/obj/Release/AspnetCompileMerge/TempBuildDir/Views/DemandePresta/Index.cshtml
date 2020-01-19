@@ -13,6 +13,12 @@
 <div id="corpsdepage">
     <div class="partiecorps">
         <h1> Demande de prestations </h1>
+
+        @if(ViewBag.ActionErreur != null)
+        {
+            <div class="erreur">Une erreur est survenue lors de l'action @ViewBag.ActionErreur, réessayez ou contactez l'administrateur.</div>
+        }
+
         @using (Html.BeginForm("Index", "DemandePresta", FormMethod.Post, new { id = "demandepresta" }))
         {
             <fieldset id="identite">

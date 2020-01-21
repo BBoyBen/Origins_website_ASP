@@ -329,7 +329,7 @@ namespace Origins_website_ASP.Models
             {
                 bdd.Avis.Add(new Avis { Date = date, Note = note, Nom = nom, Opinion = opi });
                 bdd.SaveChanges();
-                return bdd.Avis.Last().Id;
+                return bdd.Avis.ToList().Last().Id;
             }catch(Exception e)
             {
                 Utils.Logger.Log("ERROR", "Erreur création avis : " + e);

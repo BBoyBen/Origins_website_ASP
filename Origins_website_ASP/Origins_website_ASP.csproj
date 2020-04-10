@@ -261,6 +261,7 @@
     <Content Include="Content\image\email_logo.png" />
     <Content Include="Content\image\en.jpg" />
     <Content Include="Content\image\fb_logo.png" />
+    <Content Include="Content\image\fleche_doite_noire.png" />
     <Content Include="Content\image\fr.jpg" />
     <Content Include="Content\image\iconorigins.ico" />
     <Content Include="Content\image\insta_logo.png" />

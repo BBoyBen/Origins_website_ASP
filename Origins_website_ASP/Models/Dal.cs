@@ -356,7 +356,8 @@ namespace Origins_website_ASP.Models
         {
             try
             {
-                return bdd.Prestations.FirstOrDefault(p => p.Id == id);
+                Prestation prestation = bdd.Prestations.FirstOrDefault(p => p.Id == id);
+                return prestation;
             }catch(Exception e)
             {
                 Utils.Logger.Log("ERROR", "Erreur récupération de la prestation id -> " + id + " : " + e);

@@ -179,6 +179,57 @@ iframe
     text-align: center;
 }
 
+.selfCenter {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.champsInputText {
+	text-align: center;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	border-radius: 5px;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	border: 1px solid lightgrey;
+}
+
+.champsInputText:focus {
+	box-shadow: 0px -1px 20px -5px rgba(0,0,0,0.3);
+	outline-color: darkgray;
+}
+
+.champsTextArea {
+	text-align: left;
+	min-height: 10rem;
+}
+
+.labelText {
+	margin-top: 15px;
+	padding-top: 10px;
+}
+
+.bouton {
+	border-radius: 5px;
+	border: none;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	margin-top: 15px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.bouton:hover {
+	box-shadow: 0px 10px 20px 1px rgba(0,0,0,0.3);
+	font-style: italic;
+	cursor: pointer;
+}
+
+.bouton:focus {
+	outline-color: darkgray;
+}
+
 
 
 

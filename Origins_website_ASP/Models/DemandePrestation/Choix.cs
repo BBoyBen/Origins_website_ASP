@@ -22,7 +22,7 @@ namespace Origins_website_ASP.Models.DemandePrestation
         public string DureeStage { get; set; }
         [Display(Name = "Niveau :")]
         public string Niveau { get; set; }
-        [Display(Name = "Informations complémentire :")]
+        [Display(Name = "Informations complémentaire :")]
         public string InfoComplementaire { get; set; }
 
         public void Nettoie ()

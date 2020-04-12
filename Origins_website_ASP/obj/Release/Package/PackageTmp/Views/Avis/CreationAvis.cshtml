@@ -3,9 +3,13 @@
     <div id="formavis" style="display: none;">
         @using (Html.BeginForm())
         {
-            @Html.Label("nom", "Nom* : ")
-            @Html.TextBox("nom", null, new { required = "true" })
-            <span id="nomIncorrect" style="display: none;"> Nom incorrect </span>
+            <div class="row">
+                @Html.Label("nom", "Nom* : ", new { @class = "col-4 text-right labelText" })
+                @Html.TextBox("nom", null, new { required = "true", @class = "champsInputText col-4" })
+            </div>
+            <div class="row">
+                <div class="col-12 text-center erreur" id="nomIncorrect" style="display: none;"> Nom incorrect </div>
+            </div>
 
             @Html.Hidden("rate", new { value = "0" })
 
@@ -14,19 +18,35 @@
                 <img src="~/Content/image/star0.png" alt="etoile pleine" class="etoile" id="_2" onmouseover="noter(2);" onclick="valider(2);" />
                 <img src="~/Content/image/star0.png" alt="etoile pleine" class="etoile" id="_3" onmouseover="noter(3);" onclick="valider(3);" />
                 <img src="~/Content/image/star0.png" alt="etoile pleine" class="etoile" id="_4" onmouseover="noter(4);" onclick="valider(4);" />
-                <img src="~/Content/image/star0.png" alt="etoile pleine" class="etoile" id="_5" onmouseover="noter(5);" onclick="valider(5);" /><br />
-                <input type="button" value="Reset" name="reset" id="reset" onclick="zero();" />
+                <img src="~/Content/image/star0.png" alt="etoile pleine" class="etoile" id="_5" onmouseover="noter(5);" onclick="valider(5);" />
+                <div class="row">
+                    <input type="button" value="Reset" name="reset" id="reset" class="col-4 bouton" onclick="zero();" />
+                </div>
             </div>
 
-            @Html.TextArea("opinion", "Votre avis...", new { rows = "10", cols = "50", onclick = "enleve();", onblur = "remets();", required = "true" })<br />
-            <span id="desIncorrect" style="display: none"> Merci laisser un petit mot</span><br />
+            <div class="row">
+                @Html.TextArea("opinion", "Votre avis...", new
+                {
+                    rows = "10",
+                    cols = "50",
+                    onclick = "enleve();",
+                    onblur = "remets();",
+                    required = "required",
+                    @class = "champsInputText champsTextArea col-8 selfCenter"
+                })
+            </div>
+            <div class="row">
+                <div id="desIncorrect" class="col-12 text-center erreur" style="display: none"> Merci laisser un petit mot</div>
+            </div>
 
             <div class="row" id="cgu">
                 <label for="valideCgu" class="col-10"> En validant je reconnaîs avoir pris connaissance et accepté les <a href="~/Content/CGU/condition_utilisation_mentions_legales.pdf"> Conditions d'utilisation et mentions légales</a></label>
                 <input type="checkbox" name="valideCgu" id="valideCgu" />
             </div>
 
-            <input type="submit" name="poster" id="poster" value="Poster" onclick="enleve();" disabled="disabled" />
+            <div class="row">
+                <input type="submit" name="poster" id="poster" class="col-4 bouton" value="Poster" onclick="enleve();" disabled="disabled" />
+            </div>
 
             <script src='~/Content/javascript/validationAvis.js'></script>
         }
@@ -34,35 +54,55 @@
 }
 else
 {
-<div id="formavis" style="display: none;">
-    @using (Html.BeginForm())
-    {
-        @Html.Label("nom", "Name* : ")
-        @Html.TextBox("nom", null, new { required = "true" })
-        <span id="nomIncorrect" style="display: none"> Incorrect Name </span>
+    <div id="formavis" style="display: none;">
+        @using (Html.BeginForm())
+        {
+            <div class="row">
+                @Html.Label("nom", "Name* : ", new { @class = "col-4 text-right labelText" })
+                @Html.TextBox("nom", null, new { required = "true", @class = "champsInputText col-4" })
+            </div>
+            <div class="row">
+                <div class="col-12 text-center erreur" id="nomIncorrect" style="display: none;"> Incorrect Name </div>
+            </div>
 
-        @Html.Hidden("rate", new { value = "0" })
+            @Html.Hidden("rate", new { value = "0" })
 
-        <div id="note">
-            <img src="~/Content/image/star0.png" alt="etoile pleine" class="etoile" id="_1" onmouseover="noter(1);" onclick="valider(1);" />
-            <img src="~/Content/image/star0.png" alt="etoile pleine" class="etoile" id="_2" onmouseover="noter(2);" onclick="valider(2);" />
-            <img src="~/Content/image/star0.png" alt="etoile pleine" class="etoile" id="_3" onmouseover="noter(3);" onclick="valider(3);" />
-            <img src="~/Content/image/star0.png" alt="etoile pleine" class="etoile" id="_4" onmouseover="noter(4);" onclick="valider(4);" />
-            <img src="~/Content/image/star0.png" alt="etoile pleine" class="etoile" id="_5" onmouseover="noter(5);" onclick="valider(5);" /><br />
-            <input type="button" value="Reset" name="reset" id="reset" onclick="zero();" />
-        </div>
+            <div id="note">
+                <img src="~/Content/image/star0.png" alt="etoile pleine" class="etoile" id="_1" onmouseover="noter(1);" onclick="valider(1);" />
+                <img src="~/Content/image/star0.png" alt="etoile pleine" class="etoile" id="_2" onmouseover="noter(2);" onclick="valider(2);" />
+                <img src="~/Content/image/star0.png" alt="etoile pleine" class="etoile" id="_3" onmouseover="noter(3);" onclick="valider(3);" />
+                <img src="~/Content/image/star0.png" alt="etoile pleine" class="etoile" id="_4" onmouseover="noter(4);" onclick="valider(4);" />
+                <img src="~/Content/image/star0.png" alt="etoile pleine" class="etoile" id="_5" onmouseover="noter(5);" onclick="valider(5);" />
+                <div class="row">
+                    <input type="button" value="Reset" name="reset" id="reset" class="col-4 bouton" onclick="zero();" />
+                </div>
+            </div>
 
-        @Html.TextArea("opinion", "Your opinion...", new { rows = "10", cols = "50", onclick = "enleveen();", onblur = "remetsen();", required = "true" })<br />
-        <span id="desIncorrect" style="display: none;"> Thanks to let a little word. </span><br />
+            <div class="row">
+                @Html.TextArea("opinion", "Your opinion...", new
+                {
+                    rows = "10",
+                    cols = "50",
+                    onclick = "enleveen();",
+                    onblur = "remetsen();",
+                    required = "required",
+                    @class = "champsInputText champsTextArea col-8 selfCenter"
+                })
+            </div>
+            <div class="row">
+                <div id="desIncorrect" class="col-12 text-center erreur" style="display: none"> Thanks to let a little word. </div>
+            </div>
 
-        <div class="row" id="cgu">
-            <label for="valideCgu" class="col-10"> By validating I acknowledge having read and accepted the <a href="~/Content/CGU/condition_utilisation_mentions_legales.pdf"> terms of use and legal notices </a></label>
-            <input type="checkbox" name="valideCgu" id="valideCgu" />
-        </div>
+            <div class="row" id="cgu">
+                <label for="valideCgu" class="col-10"> By validating I acknowledge having read and accepted the <a href="~/Content/CGU/condition_utilisation_mentions_legales.pdf"> terms of use and legal notices </a></label>
+                <input type="checkbox" name="valideCgu" id="valideCgu" />
+            </div>
 
-        <input type="submit" name="poster" id="poster" value="Post" onclick="enleveen();" disabled="disabled" />
+            <div class="row">
+                <input type="submit" name="poster" id="poster" class="col-4 bouton" value="Post" onclick="enleve();" disabled="disabled" />
+            </div>
 
-        <script src='~/Content/javascript/validationAvis.js'></script>
-    }
-</div>
+            <script src='~/Content/javascript/validationAvis.js'></script>
+        }
+    </div>
 }

@@ -99,14 +99,6 @@
 	margin-left: 30px;
 }
 
-input, select
-{
-	margin-top: 10px;
-	margin-bottom: 10px;
-	border-radius: 5px;
-	box-shadow: 3px 3px 2px black;
-}
-
 .diapo {
     width: 100%;
     height: auto;
@@ -115,6 +107,11 @@ input, select
 .photoDiapo {
     width: 50%;
     height: auto;
+}
+
+#flecheDroite {
+	width: auto;
+	height: 3rem;
 }
 
 

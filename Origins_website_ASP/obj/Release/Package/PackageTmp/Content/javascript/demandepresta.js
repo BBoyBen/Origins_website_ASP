@@ -62,13 +62,13 @@ var choixst = document.getElementById('choixstage');
 var datestage = document.getElementById('datestage');
 
 document.getElementById('representation').onclick = function() {
-	choixrep.style.display = "flex";
+	choixrep.style.display = "block";
 	choixst.style.display = "none";
 	datestage.removeAttribute("required");
 };
 document.getElementById('stage').onclick = function() {
 	choixrep.style.display = "none";
-	choixst.style.display = "flex";
+	choixst.style.display = "block";
 	datestage.required = "required";
 };
 document.getElementById('cours').onclick = function() {
@@ -176,9 +176,9 @@ document.getElementById('Structure_CodePostal').addEventListener('input', functi
 /* Validation CGU */
 document.getElementById('valideCgu').addEventListener('change', function (e) {
     if (e.target.checked == true)
-        cguAccept = true;
+        cguvalide = true;
     else 
-        cguAccept = false;
+        cguvalide = false;
 });
 
 
@@ -201,6 +201,6 @@ function afficherBouton () {
 
 window.onload = function () {
     afficherBouton();
-    document.getElementById('Choix_Date').value = "2019-01-01";
+    document.getElementById('datestage').value = "2019-01-01";
 }
 

@@ -1,6 +1,11 @@
 ﻿@model List<Origins_website_ASP.Models.Avis>
 <h1> Avis </h1>
 
+@if (ViewBag.ActionErreur != null)
+{
+    <div class="erreur"> Une erreur est survenue lors de l'action @ViewBag.ActionErreur, réessayez ou contactez l'administrateur.</div>
+}
+
 @for (int i = Model.Count() - 1; i >= 0; i--)
 {
     Origins_website_ASP.Models.Avis avis = Model.ElementAt(i);

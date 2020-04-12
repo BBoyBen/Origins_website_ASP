@@ -73,7 +73,10 @@ namespace Origins_website_ASP.Controllers
         {
             using (IDal dal = new Dal())
             {
-                dal.CacherActus(id);
+                int retour = dal.CacherActus(id);
+                if (retour == -1)
+                    ViewBag.ActionErreur("cacher une actualité");
+
                 return RedirectToAction("/");
             }
         }
@@ -83,7 +86,10 @@ namespace Origins_website_ASP.Controllers
         {
             using (IDal dal = new Dal())
             {
-                dal.AfficherActu(id);
+                int retour = dal.AfficherActu(id);
+                if (retour == -1)
+                    ViewBag.ActionErreur("afficher une actualité");
+
                 return RedirectToAction("/");
             }
         }
@@ -93,7 +99,10 @@ namespace Origins_website_ASP.Controllers
         {
             using (IDal dal = new Dal())
             {
-                dal.SupprimerActu(id);
+                int retour = dal.SupprimerActu(id);
+                if (retour == -1)
+                    ViewBag.ActionErreur("supprimer une actualité");
+
                 return RedirectToAction("/");
             }
         }

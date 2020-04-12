@@ -13,176 +13,259 @@
 <div id="corpsdepage">
     <div class="partiecorps">
         <h1> Demande de prestations </h1>
+
+        @if(ViewBag.ActionErreur != null)
+        {
+            <div class="erreur">Une erreur est survenue lors de l'action @ViewBag.ActionErreur, réessayez ou contactez l'administrateur.</div>
+        }
+
         @using (Html.BeginForm("Index", "DemandePresta", FormMethod.Post, new { id = "demandepresta" }))
         {
-            <fieldset id="identite">
-                <div id="nomprenom">
-                    <div class="elemnp">
-                        @Html.LabelFor(model => model.Identite.Nom)
-                        @Html.TextBoxFor(model => model.Identite.Nom)
-                        <span id="nomIncorrect"></span>
+            <fieldset id="identite" class="container">
+                <div id="nomprenom" class="row">
+                    <div class="elemnp col-12 col-sm-6">
+                        <div class="row">
+                            @Html.LabelFor(model => model.Identite.Nom, new { @class = "labelText col-4 text-center" })
+                            @Html.TextBoxFor(model => model.Identite.Nom, new { @class = "champsInputText col-6" })
+                        </div>
+                        <div class="row">
+                            <div id="nomIncorrect" class="col-12 text-center"></div>
+                        </div>
                     </div>
-                    <div class="elemnp">
-                        @Html.LabelFor(model => model.Identite.Prenom)
-                        @Html.TextBoxFor(model => model.Identite.Prenom)
-                        <span id="prenomIncorrect"></span>
+                    <div class="elemnp col-12 col-sm-6">
+                        <div class="row">
+                            @Html.LabelFor(model => model.Identite.Prenom, new { @class = "labelText col-4 text-center" })
+                            @Html.TextBoxFor(model => model.Identite.Prenom, new { @class = "champsInputText col-6" })
+                        </div>
+                        <div class="row">
+                            <div id="prenomIncorrect" class="col-12 text-center"></div>
+                        </div>
                     </div>
                 </div>
-                <div id="mailtel">
-                    <div class="elemmt">
-                        @Html.LabelFor(model => model.Identite.Email)
-                        @Html.TextBoxFor(model => model.Identite.Email)
-                        <span id="emailIncorrect"></span>
+                <div id="mailtel" class="row">
+                    <div class="elemmt col-12 col-sm-6">
+                        <div class="row">
+                            @Html.LabelFor(model => model.Identite.Email, new { @class = "labelText col-4 text-center" })
+                            @Html.TextBoxFor(model => model.Identite.Email, new { @class = "champsInputText col-6" })
+                        </div>
+                        <div class="row">
+                            <div id="emailIncorrect" class="col-12 text-center"></div>
+                        </div>
                     </div>
-                    <div class="elemmt">
-                        @Html.LabelFor(model => model.Identite.Telephone)
-                        @Html.TextBoxFor(model => model.Identite.Telephone)
-                        <span id="telephoneIncorrect"></span>
+                    <div class="elemmt col-12 col-sm-6">
+                        <div class="row">
+                            @Html.LabelFor(model => model.Identite.Telephone, new { @class = "labelText col-4 text-center" })
+                            @Html.TextBoxFor(model => model.Identite.Telephone, new { @class = "champsInputText col-6" })
+                        </div>
+                        <div class="row">
+                            <div id="telephoneIncorrect" class="col-12 text-center"></div>
+                        </div>
                     </div>
                 </div>
             </fieldset>
 
-            <fieldset id="structure">
+            <fieldset id="structure" class="container">
                 <div id="struc">
-                    <div class="elemstruc">
-                        @Html.LabelFor(model => model.Structure.Type)
-                        @{
-                            IEnumerable<SelectListItem> ListeTypeStruc = new List<SelectListItem> {
-                                new SelectListItem { Text = "Association", Value = "Association", Selected = true},
-                                new SelectListItem { Text = "Entreprise", Value = "Entreprise"},
-                                new SelectListItem { Text = "Particulier", Value = "Particulier"},
-                                new SelectListItem { Text = "Autre", Value = "Autre"}
-                            };
-                        }
-                        @Html.DropDownListFor(model => model.Structure.Type, ListeTypeStruc)
+                    <div class="row elemstruc">
+                        <div class="col-12 col-sm-6 selfCenter">
+                            <div class="row">
+                                @Html.LabelFor(model => model.Structure.Type, new { @class = "labelText col-6 text-center" })
+                                @{
+                                    IEnumerable<SelectListItem> ListeTypeStruc = new List<SelectListItem> {
+                                    new SelectListItem { Text = "Association", Value = "Association", Selected = true},
+                                    new SelectListItem { Text = "Entreprise", Value = "Entreprise"},
+                                    new SelectListItem { Text = "Particulier", Value = "Particulier"},
+                                    new SelectListItem { Text = "Autre", Value = "Autre"}
+                                };
+                                }
+                                @Html.DropDownListFor(model => model.Structure.Type, ListeTypeStruc, new { @class = "champsInputText col-6" })
+                            </div>
+                        </div>
                     </div>
-                    <div class="elemstruc">
-                        @Html.LabelFor(model => model.Structure.NomStructure)
-                        @Html.TextBoxFor(model => model.Structure.NomStructure)
+                    <div class="row elemstruc">
+                        <div class="col-12 col-sm-6 selfCenter">
+                            <div class="row">
+                                @Html.LabelFor(model => model.Structure.NomStructure, new { @class = "labelText col-6 text-center" })
+                                @Html.TextBoxFor(model => model.Structure.NomStructure, new { @class = "champsInputText col-6" })
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                @Html.LabelFor(model => model.Structure.Pays)
-                @{
-                    IEnumerable<SelectListItem> ListePays = new List<SelectListItem> {
-                        new SelectListItem {Text = "France", Value = "France", Selected = true},
-                        new SelectListItem {Text = "Allemagne", Value = "Allemagne"},
-                        new SelectListItem {Text = "Espagne", Value = "Espagne"},
-                        new SelectListItem {Text = "Grande-Bretagne", Value = "GrandeBretagne"},
-                        new SelectListItem {Text = "Italie", Value = "Italie"},
-                        new SelectListItem {Text = "Suisse", Value = "Suisse"},
-                        new SelectListItem {Text = "Hollande", Value = "Hollande"},
-                        new SelectListItem {Text = "Belgique", Value = "Belgique"},
-                        new SelectListItem {Text = "Etats-Unis", Value = "EtatsUnis"},
-                        new SelectListItem {Text = "Autre", Value = "Autre"}
-                    };
-                }
-                @Html.DropDownListFor(model => model.Structure.Pays, ListePays)
+                <div class="row">
+                    <div class="col-12 col-sm-6 selfCenter">
+                        <div class="row">
+                            @Html.LabelFor(model => model.Structure.Pays, new { @class = "labelText col-6 text-center" })
+                            @{
+                                IEnumerable<SelectListItem> ListePays = new List<SelectListItem> {
+                                    new SelectListItem {Text = "France", Value = "France", Selected = true},
+                                    new SelectListItem {Text = "Allemagne", Value = "Allemagne"},
+                                    new SelectListItem {Text = "Espagne", Value = "Espagne"},
+                                    new SelectListItem {Text = "Grande-Bretagne", Value = "GrandeBretagne"},
+                                    new SelectListItem {Text = "Italie", Value = "Italie"},
+                                    new SelectListItem {Text = "Suisse", Value = "Suisse"},
+                                    new SelectListItem {Text = "Hollande", Value = "Hollande"},
+                                    new SelectListItem {Text = "Belgique", Value = "Belgique"},
+                                    new SelectListItem {Text = "Etats-Unis", Value = "EtatsUnis"},
+                                    new SelectListItem {Text = "Autre", Value = "Autre"}
+                                };
+                            }
+                            @Html.DropDownListFor(model => model.Structure.Pays, ListePays, new { @class = "champsInputText col-6" })
+                        </div>
+                    </div>
+                </div>
 
-                <div id="paysfrance" style="display: block;">
-                    @Html.LabelFor(model => model.Structure.CodePostal)
-                    @Html.TextBoxFor(model => model.Structure.CodePostal)
-                    <span id="cpIncorrect"></span>
-                </div>
-                <div id="payseu" style="display: none;">
-                    <div class="elemeu">
-                        @Html.LabelFor(model => model.Structure.Etat)
-                        @Html.TextBoxFor(model => model.Structure.Etat)
-                    </div>
-                    <div class="elemeu">
-                        @Html.LabelFor(model => model.Structure.VilleEU)
-                        @Html.TextBoxFor(model => model.Structure.VilleEU)
+                <div id="paysfrance" class="row" style="display: block;">
+                    <div class="col-12 col-sm-6 selfCenter">
+                        <div class="row">
+                            @Html.LabelFor(model => model.Structure.CodePostal, new { @class = "labelText col-6 text-center" })
+                            @Html.TextBoxFor(model => model.Structure.CodePostal, new { @class = "champsInputText col-6" })
+                        </div>
+                        <div class="row">
+                            <div id="cpIncorrect" class="col-12 text-center"></div>
+                        </div>
                     </div>
                 </div>
-                <div id="paysautre" style="display: none;">
-                    @Html.LabelFor(model => model.Structure.VilleAutre)
-                    @Html.TextBoxFor(model => model.Structure.VilleAutre)
+                <div id="payseu" class="row" style="display: none;">
+                    <div class="col-12 col-sm-6 selfCenter">
+                        <div class="row">
+                            @Html.LabelFor(model => model.Structure.Etat, new { @class = "labelText col-6 text-center" })
+                            @Html.TextBoxFor(model => model.Structure.Etat, new { @class = "champsInputText col-6" })
+                        </div>
+                        <div class="row">
+                            @Html.LabelFor(model => model.Structure.VilleEU, new { @class = "labelText col-6 text-center" })
+                            @Html.TextBoxFor(model => model.Structure.VilleEU, new { @class = "champsInputText col-6" })
+                        </div>
+                    </div>
+                </div>
+                <div id="paysautre" class="row" style="display: none;">
+                    <div class="col-12 col-sm-6 selfCenter">
+                        <div class="row">
+                            @Html.LabelFor(model => model.Structure.VilleAutre, new { @class = "labelText col-6 text-center" })
+                            @Html.TextBoxFor(model => model.Structure.VilleAutre, new { @class = "champsInputText col-6" })
+                        </div>
+                    </div>
                 </div>
             </fieldset>
 
-            <fieldset id="choixprestation">
-                <div id="bouttonchoixrep">
-                    <div class="elemrep">
-                        @Html.RadioButtonFor(model => model.Choix.ChoixPrestation, "representation", new { id = "representation", @checked = "checked" })
-                        @Html.Label("representation", "Représentation")
-                    </div>
-                    <div class="elemrep">
-                        @Html.RadioButtonFor(model => model.Choix.ChoixPrestation, "stage", new { id = "stage" })
-                        @Html.Label("stage", "Stage")
-                    </div>
-                    <div class="elemrep">
-                        @Html.RadioButtonFor(model => model.Choix.ChoixPrestation, "cours", new { id = "cours" })
-                        @Html.Label("cours", "Cours")
-                    </div>
+            <fieldset id="choixprestation" class="container">
+                <div id="bouttonchoixrep" class="row">
+                    @Html.RadioButtonFor(model => model.Choix.ChoixPrestation, "representation", new { id = "representation", @checked = "checked", @class = "col-1 inputRadio text-right" })
+                    @Html.Label("representation", "Représentation", new { @class = "col-3 text-left" })
+
+                    @Html.RadioButtonFor(model => model.Choix.ChoixPrestation, "stage", new { id = "stage", @class = "col-1 inputRadio text-right" })
+                    @Html.Label("stage", "Stage", new { @class = "col-3 text-left" })
+
+                    @Html.RadioButtonFor(model => model.Choix.ChoixPrestation, "cours", new { id = "cours", @class = "col-1 inputRadio text-right" })
+                    @Html.Label("cours", "Cours", new { @class = "col-3 text-left" })
                 </div>
 
-                <div id="choixrepresentation" style="display: flex;">
-                    <div class="blocrep">
-                        @Html.LabelFor(model => model.Choix.TempsPresta)
-                        @Html.TextBoxFor(model => model.Choix.TempsPresta, new { type = "number", min = "5", max = "90", step = "1" })
+                <div id="choixrepresentation" style="display: block;">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 selfCenter">
+                            <div class="row">
+                                @Html.LabelFor(model => model.Choix.TempsPresta, new { @class = "labelText col-8 text-center" })
+                                @Html.TextBoxFor(model => model.Choix.TempsPresta, new { type = "number", min = "5", max = "90", step = "1", @class = "champsInputText col-4" })
+                            </div>
+                        </div>
                     </div>
-                    <div class="blocrep">
-                        @Html.LabelFor(model => model.Choix.Occurence)
-                        @Html.TextBoxFor(model => model.Choix.Occurence, new { type = "number", min = "1", max = "10", step = "1" })
+                    <div class="row">
+                        <div class="col-12 col-sm-6 selfCenter">
+                            <div class="row">
+                                @Html.LabelFor(model => model.Choix.Occurence, new { @class = "labelText col-8 text-center" })
+                                @Html.TextBoxFor(model => model.Choix.Occurence, new { type = "number", min = "1", max = "10", step = "1", @class = "champsInputText col-4" })
+                            </div>
+                        </div>
                     </div>
-                    <div class="blocrep">
-                        Initiation au hip-hop:
-                        @Html.RadioButtonFor(model => model.Choix.Initiation, "oui", new { id = "oui", @checked = "checked" })
-                        @Html.Label("oui", "Oui")
-                        @Html.RadioButtonFor(model => model.Choix.Initiation, "non", new { id = "non" })
-                        @Html.Label("non", "Non")
+                    <div class="row">
+                        <div class="col-12 col-sm-6 selfCenter">
+                            <div class="row">
+                                <div class="col-6 text-center"> Initiation au hip-hop: </div>
+                                @Html.RadioButtonFor(model => model.Choix.Initiation, "oui", new { id = "oui", @checked = "checked", @class = "col-1 inputRadio" })
+                                @Html.Label("oui", "Oui", new { @class = "col-2 text-center" })
+                                @Html.RadioButtonFor(model => model.Choix.Initiation, "non", new { id = "non", @class = "col-1 inputRadio" })
+                                @Html.Label("non", "Non", new { @class = "col-2 text-center" })
+                            </div>
+                        </div>
                     </div>
-                    <div id="budget" class="blocrep">
-                        @Html.LabelFor(model => model.Choix.Budget)
-                        @Html.TextBoxFor(model => model.Choix.Budget, new { type = "number", step = "1", min = "0" })
-                        @Html.Label("Prestation_Budget", "€")
+                    <div id="budget" class="row">
+                        <div class="col-12 col-sm-6 selfCenter">
+                            <div class="row">
+                                @Html.LabelFor(model => model.Choix.Budget, new { @class = "labelText col-5 text-center" })
+                                @Html.TextBoxFor(model => model.Choix.Budget, new { type = "number", step = "1", min = "0", @class = "champsInputText col-6" })
+                                @Html.Label("Prestation_Budget", "€", new { @class = "labelText col-1" })
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div id="choixstage" style="display: none;">
-                    <div class="blocstage">
-                        @Html.LabelFor(model => model.Choix.Date)
-                        @Html.TextBoxFor(model => model.Choix.Date, new { type = "date" })
+                    <div class="row">
+                        <div class="col-12 col-sm-6 selfCenter">
+                            <div class="row">
+                                @Html.LabelFor(model => model.Choix.Date, new { @class = "labelText col-6 text-center" })
+                                @Html.TextBoxFor(model => model.Choix.Date, new { type = "date", id = "datestage", @class = "champsInputText col-6" })
+                            </div>
+                        </div>
                     </div>
-                    <div class="blocstage">
-                        @Html.LabelFor(model => model.Choix.DureeStage)
-                        @{
-                            IEnumerable<SelectListItem> ListeDureeStage = new List<SelectListItem> {
+                    <div class="row">
+                        <div class="col-12 col-sm-6 selfCenter">
+                            <div class="row">
+                                @Html.LabelFor(model => model.Choix.DureeStage, new { @class = "labelText col-6 text-center" })
+                                @{
+                                    IEnumerable<SelectListItem> ListeDureeStage = new List<SelectListItem> {
                                 new SelectListItem{Text = "Demi journée", Value = "demijournee", Selected = true},
                                 new SelectListItem{Text = "1 journée", Value = "unejournee"},
                                 new SelectListItem{Text = "2 jours", Value = "deuxjour"},
                                 new SelectListItem{Text = "Autre", Value = "autre"}
                             };
-                        }
-                        @Html.DropDownListFor(model => model.Choix.DureeStage, ListeDureeStage)
+                                }
+                                @Html.DropDownListFor(model => model.Choix.DureeStage, ListeDureeStage, new { @class = "champsInputText col-6" })
+                            </div>
+                        </div>
                     </div>
-                    <div class="blocstage">
-                        @Html.LabelFor(model => model.Choix.Niveau)
-                        @{
-                            IEnumerable<SelectListItem> ListeNiveau = new List<SelectListItem> {
+                    <div class="row">
+                        <div class="col-12 col-sm-6 selfCenter">
+                            <div class="row">
+                                @Html.LabelFor(model => model.Choix.Niveau, new { @class = "labelText col-6 text-center" })
+                                @{
+                                    IEnumerable<SelectListItem> ListeNiveau = new List<SelectListItem> {
                                 new SelectListItem{Text = "Débutant", Value = "Debutant", Selected = true},
                                 new SelectListItem{Text = "Initié", Value = "Initie"},
                                 new SelectListItem{Text = "Confirmé", Value = "Confirme"},
                                 new SelectListItem{Text = "Autre", Value = "Autre"}
                             };
-                        }
-                        @Html.DropDownListFor(model => model.Choix.Niveau, ListeNiveau)
+                                }
+                                @Html.DropDownListFor(model => model.Choix.Niveau, ListeNiveau, new { @class = "champsInputText col-6" })
+                            </div>
+                        </div>
                     </div>
                 </div>
             </fieldset>
-            <fieldset id="info">
-                @Html.LabelFor(model => model.Choix.InfoComplementaire, new { @class = "eleminfo" })
-                @Html.TextAreaFor(model => model.Choix.InfoComplementaire, 10, 50, new { @class = "eleminfo", value = "NaN" })
+
+            <fieldset id="info" class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        @Html.LabelFor(model => model.Choix.InfoComplementaire, new { @class = "eleminfo labelText" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-6 selfCenter">
+                        @Html.TextAreaFor(model => model.Choix.InfoComplementaire, new { @class = "eleminfo champsInputText champsTextArea allWidth", value = "NaN" })
+                    </div>
+                </div>
             </fieldset>
 
             <fieldset>
                 <div class="row" id="cgu">
-                    <label for="valideCgu" class="col-10"> En validant je reconnaîs avoir pris connaissance et accepté les <a href="~/Content/CGU/condition_utilisation_mentions_legales.pdf"> Conditions d'utilisation et mentions légales</a></label>
-                    <input type="checkbox" name="valideCgu" id="valideCgu" />
+                    <label for="valideCgu" class="col-10 text-center"> En validant je reconnaîs avoir pris connaissance et accepté les <a href="~/Content/CGU/condition_utilisation_mentions_legales.pdf"> Conditions d'utilisation et mentions légales</a></label>
+                    <input type="checkbox" name="valideCgu" id="valideCgu" class="col-2 text-center" />
                 </div>
             </fieldset>
 
-            <input type="submit" value="Valider" id="valider" />
+            <div class="row">
+                <input type="submit" value="Valider" id="valider" class="bouton col-4 selfCenter" />
+            </div>
         }
     </div>
 </div>

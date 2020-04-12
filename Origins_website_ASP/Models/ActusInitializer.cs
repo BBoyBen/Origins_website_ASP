@@ -26,7 +26,7 @@ namespace Origins_website_ASP.Models
         {
             using (IDal dal = new Dal())
             {
-                dal.InitBdd();
+                //dal.InitBdd();
             }
 
             /*bool versionEn;

@@ -38,10 +38,16 @@
     <div class="partiecorps">
         <div id="actu">
             <h1> What's up ? </h1>
+
+            @if (ViewBag.ActionErreur != null)
+            {
+                <div class="erreur"> An error happend during the action @ViewBag.ActionErreur, try again or contact the administrator. </div>
+            }
+
             <form id="formchoixactus">
                 <div class="affichactus">
-                    <label for="choixafficher"> Show: </label>
-                    <select name="choixafficher" id="choixafficher">
+                    <label for="choixafficher" class="labelText"> Show: </label>
+                    <select name="choixafficher" id="choixafficher" class="champsInputText">
                         <option value="tout"> All </option>
                         <option value="type"> Type </option>
                         <option value="date"> Date </option>
@@ -49,8 +55,8 @@
                 </div>
 
                 <div class="affichactus" style="display: none;">
-                    <label for="choixtype"> -> </label>
-                    <select name="choixtype" id="choixtype">
+                    <label for="choixtype"> <img src="~/Content/image/fleche_doite_noire.png" alt="->" id="flecheDroite" /> </label>
+                    <select name="choixtype" id="choixtype" class="champsInputText">
                         <option value="spectacle" selected> Spectacle </option>
                         <option value="video"> Video </option>
                         <option value="evenement"> Events </option>
@@ -60,8 +66,8 @@
                 </div>
 
                 <div class="affichactus" style="display: none;">
-                    <label for="datedebut"> since: </label>
-                    <input type="date" name="datedebut" id="datedebut" />
+                    <label for="datedebut" class="labelText"> since: </label>
+                    <input type="date" name="datedebut" id="datedebut" class="champsInputText" />
                 </div>
             </form>
         </div>
@@ -255,6 +261,10 @@
                     }
                 }
             }
+        }
+        else
+        {
+            <div> No actuality to show </div>
         }
 
         <div id="pasactus" style="display: none;"> No actuality to show </div>

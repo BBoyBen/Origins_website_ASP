@@ -44,6 +44,12 @@ namespace Origins_website_ASP.Controllers
             using (IDal dal = new Dal())
             {
                 int idPresta = dal.CreerPrestation(identite, structure, choix);
+                if (idPresta == -1)
+                {
+                    ViewBag.ActionErreur = "nouvelle demande de prestation";
+                    return RedirectToAction("Index");
+                }
+
                 FormsAuthentication.SetAuthCookie("utilisateur" + idPresta, false);
                 string message = dal.MailDemandePresta(idPresta);
                 MailMessage email = new MailMessage();

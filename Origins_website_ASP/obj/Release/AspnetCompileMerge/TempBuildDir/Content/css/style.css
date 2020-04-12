@@ -201,7 +201,7 @@ iframe
 
 .champsTextArea {
 	text-align: left;
-	min-height: 10rem;
+	min-height: 15rem;
 }
 
 .labelText {
@@ -230,15 +230,17 @@ iframe
 	outline-color: darkgray;
 }
 
+.inputRadio {
+	margin-top: 0.5rem;
+}
 
-
-
+.allWidth {
+	width: 100%;
+}
 
 
 /* Propriété pour les écrans mobile */
-
-@media all and (max-device-width: 480px)
-{
+@media all and (max-device-width: 480px) {
 	.partiecorps
 	{
 		width: 100%;

@@ -471,3 +471,4 @@ C:\Users\ben63\Documents\Origins_website\Origins_website_ASP\Origins_website_ASP
 C:\Users\ben63\Documents\Origins_website\Origins_website_ASP\Origins_website_ASP\obj\Release\Origins_website_ASP.csproj.CopyComplete
 C:\Users\ben63\Documents\Origins_website\Origins_website_ASP\Origins_website_ASP\obj\Release\Origins_website_ASP.dll
 C:\Users\ben63\Documents\Origins_website\Origins_website_ASP\Origins_website_ASP\obj\Release\Origins_website_ASP.pdb
+C:\Users\ben63\Documents\Origins_website\Origins_website_ASP\Origins_website_ASP\obj\Release\Origins_website_ASP.csproj.CoreCompileInputs.cache

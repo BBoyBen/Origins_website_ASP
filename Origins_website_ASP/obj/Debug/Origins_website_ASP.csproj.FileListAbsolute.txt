@@ -575,3 +575,4 @@ D:\Origins_website\Origins_website_ASP\Origins_website_ASP\obj\Debug\Origins_web
 D:\Origins_website\Origins_website_ASP\Origins_website_ASP\obj\Debug\Origins_website_ASP.csproj.CopyComplete
 D:\Origins_website\Origins_website_ASP\Origins_website_ASP\obj\Debug\Origins_website_ASP.dll
 D:\Origins_website\Origins_website_ASP\Origins_website_ASP\obj\Debug\Origins_website_ASP.pdb
+D:\Origins_website\Origins_website_ASP\Origins_website_ASP\obj\Debug\Origins_website_ASP.csproj.CoreCompileInputs.cache

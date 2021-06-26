@@ -6,6 +6,7 @@ using Origins_website_ASP.Utils;
 using Origins_website_ASP.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -31,7 +32,7 @@ namespace Origins_website_ASP.Controllers
                     ViewBag.Auth = false;
                 try
                 {
-                    List<String> allPhotosAcceuil = new List<string> { "karl_lewis_vrille.jpg", "shamy_frizz.jpg", "chris_accro.jpg", "vithia_frizz.jpg", "nassir_frizz.jpg" };
+                    List<String> allPhotosAcceuil = Directory.GetFiles(Server.MapPath("~/Content/photo_acceuil")).Select(Path.GetFileName).ToList();
                     ActusViewModel viewModel = new ActusViewModel
                     {
                         Actualites = dal.ObtenirToutesLesActus(),

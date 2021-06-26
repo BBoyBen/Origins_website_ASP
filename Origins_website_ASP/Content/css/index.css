@@ -105,8 +105,8 @@
 }
 
 .photoDiapo {
-    width: 50%;
-    height: auto;
+    width: auto;
+    height: 30em;
 }
 
 #flecheDroite {

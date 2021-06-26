@@ -307,7 +307,11 @@
     <Content Include="Content\photos_membres\vithia.jpg" />
     <Content Include="Content\photo_acceuil\chris_accro.jpg" />
     <Content Include="Content\photo_acceuil\karl_lewis_vrille.jpg" />
+    <Content Include="Content\photo_acceuil\karl_lewis_vrille_colonne.jpg" />
+    <Content Include="Content\photo_acceuil\kar_lewis_clash_black_white.jpg" />
+    <Content Include="Content\photo_acceuil\kar_lewis_clash_vue_nice.jpg" />
     <Content Include="Content\photo_acceuil\nassir_frizz.jpg" />
+    <Content Include="Content\photo_acceuil\shamy_cours_pink.jpg" />
     <Content Include="Content\photo_acceuil\shamy_frizz.jpg" />
     <Content Include="Content\photo_acceuil\vithia_frizz.jpg" />
     <Content Include="favicon.ico" />
